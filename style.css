@@ -270,11 +270,18 @@ a:hover {
     color: var(--cor-primaria);
 }
 
-/* Media Queries */
+/* Mobile Styles */
 @media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
+  .menu {
+    padding: 0.8rem 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
     
     .nav-list {
         position: fixed;
