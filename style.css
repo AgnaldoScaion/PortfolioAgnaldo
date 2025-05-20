@@ -137,6 +137,9 @@ body {
     border-bottom: 3px solid var(--cor-secundaria);
     display: inline-block;
     padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .secao p {
@@ -256,7 +259,30 @@ a:hover {
     border-top: 1px solid var(--fundo-claro);
 }
 
-/* Certificados */
+/* Certificados - Estilo Acordeão */
+.certificados-toggle {
+    margin-left: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    color: var(--cor-primaria);
+}
+
+.certificados-container {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.certificados-container.active {
+    max-height: 1000px; /* Valor maior que o conteúdo real */
+    opacity: 1;
+}
+
+.certificados-toggle.active {
+    transform: rotate(180deg);
+}
+
 #certificados ul li a {
     display: inline-block;
     padding: 0.5rem;
@@ -272,16 +298,16 @@ a:hover {
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-  .menu {
-    padding: 0.8rem 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .menu-toggle {
-    display: block;
-  }
+    .menu {
+        padding: 0.8rem 0;
+        height: 60px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
     
     .nav-list {
         position: fixed;
@@ -447,3 +473,274 @@ a:hover {
     }
 }
 
+/* Novo Cabeçalho */
+.cabecalho {
+    background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
+    color: #ffffff;
+    padding: 2rem 0 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.cabecalho-conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-bottom: 2rem;
+}
+
+.cabecalho-texto {
+    flex: 1;
+    z-index: 2;
+}
+
+.cabecalho h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #ffeb3b, #ffc107);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
+
+.subtitulo {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.cabecalho-social {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.cabecalho-social a {
+    color: var(--cor-primaria);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.cabecalho-social a:hover {
+    color: #ffffff;
+    transform: translateY(-3px);
+}
+
+.cabecalho-imagem {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 1;
+}
+
+.imagem-container {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: var(--fundo-claro);
+    border: 5px solid var(--cor-primaria);
+    overflow: hidden;
+    position: relative;
+}
+
+.imagem-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://abre.ai/mMQP') center/cover no-repeat;
+    opacity: 0.8;
+}
+
+.botao-contato {
+    display: inline-block;
+    background-color: var(--cor-primaria);
+    color: var(--texto-escuro);
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 1.5rem 0;
+    transition: all 0.3s ease;
+    z-index: 2;
+    position: relative;
+}
+
+.botao-contato:hover {
+    background-color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 235, 59, 0.3);
+}
+
+.onda {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 1;
+}
+
+.onda svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Novo Rodapé */
+.rodape {
+    background: linear-gradient(135deg, #1a1a1a 0%, #121212 100%);
+    color: #ffffff;
+    padding: 3rem 0 0;
+    position: relative;
+}
+
+.rodape::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--cor-primaria), transparent);
+}
+
+.rodape-conteudo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.rodape-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--cor-primaria);
+}
+
+.rodape-info p {
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+.rodape-links h4,
+.rodape-contato h4,
+.rodape-social h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--cor-primaria);
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.rodape-links h4::after,
+.rodape-contato h4::after,
+.rodape-social h4::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background-color: var(--cor-primaria);
+}
+
+.rodape-links ul,
+.rodape-contato ul {
+    list-style: none;
+}
+
+.rodape-links li {
+    margin-bottom: 0.8rem;
+}
+
+.rodape-links a {
+    color: #ffffff;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.rodape-links a:hover {
+    opacity: 1;
+    color: var(--cor-primaria);
+    transform: translateX(5px);
+}
+
+.rodape-contato li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    opacity: 0.8;
+}
+
+.rodape-contato i {
+    color: var(--cor-primaria);
+    width: 20px;
+    text-align: center;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-icons a {
+    color: #ffffff;
+    font-size: 1.5rem;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--cor-primaria);
+    opacity: 1;
+    transform: translateY(-3px);
+}
+
+.rodape-copyright {
+    text-align: center;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.rodape-copyright p {
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .cabecalho-conteudo {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .cabecalho-social {
+        justify-content: center;
+    }
+    
+    .cabecalho-imagem {
+        margin-top: 1.5rem;
+    }
+    
+    .imagem-container {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .rodape-conteudo {
+        grid-template-columns: 1fr;
+    }
+}
