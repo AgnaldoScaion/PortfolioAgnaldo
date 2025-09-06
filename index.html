@@ -308,6 +308,72 @@
         body.light .nav-links a::after {
             background: var(--azul-primario);
         }
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--amarelo-primario);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        body.light .mobile-menu-toggle {
+            color: var(--azul-primario);
+        }
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            display: none;
+        }
+        .mobile-nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 75%;
+            max-width: 300px;
+            height: 100%;
+            background: var(--fundo-escuro-2);
+            z-index: 999;
+            padding: 2rem;
+            transition: right 0.3s ease-in-out;
+        }
+        body.light .mobile-nav-menu {
+            background: var(--fundo-claro-1);
+        }
+        .mobile-nav-menu.active {
+            right: 0;
+        }
+        .mobile-nav-menu .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .mobile-nav-menu .nav-links a {
+            font-size: 1.2rem;
+            color: var(--texto-claro);
+        }
+        body.light .mobile-nav-menu .nav-links a {
+            color: var(--texto-escuro);
+        }
+        .mobile-close {
+            background: none;
+            border: none;
+            color: var(--amarelo-primario);
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+        body.light .mobile-close {
+            color: var(--azul-primario);
+        }
         /* Sections */
         .section {
             padding: 5rem 0;
@@ -430,6 +496,117 @@
             color: var(--amarelo-primario);
         }
         body.light .skill-title {
+            color: var(--azul-primario);
+        }
+        /* Timeline Section */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+            padding-left: 3rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 1.5rem;
+            width: 4px;
+            height: 100%;
+            background: var(--amarelo-primario);
+            border-radius: 2px;
+        }
+        body.light .timeline::before {
+            background: var(--azul-primario);
+        }
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            background: var(--fundo-escuro-3);
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: var(--transicao);
+            position: relative;
+            border: 1px solid transparent;
+        }
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--amarelo-primario);
+            box-shadow: var(--sombra-suave);
+        }
+        body.light .timeline-item {
+            background: white;
+            box-shadow: var(--sombra-suave);
+        }
+        body.light .timeline-item:hover {
+            border-color: var(--azul-primario);
+        }
+        .timeline-dot {
+            width: 40px;
+            height: 40px;
+            background: var(--amarelo-primario);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--fundo-escuro-1);
+            font-size: 1.2rem;
+            position: absolute;
+            left: -2.5rem;
+            top: 1.5rem;
+        }
+        body.light .timeline-dot {
+            background: var(--azul-primario);
+            color: white;
+        }
+        .timeline-content {
+            flex: 1;
+        }
+        .timeline-content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--amarelo-primario);
+            margin-bottom: 0.5rem;
+        }
+        body.light .timeline-content h3 {
+            color: var(--azul-primario);
+        }
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--texto-medio);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-institution {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--texto-claro);
+            margin-bottom: 0.5rem;
+        }
+        body.light .timeline-institution {
+            color: var(--texto-escuro);
+        }
+        .timeline-content p {
+            font-size: 0.95rem;
+            color: var(--texto-medio);
+            margin-bottom: 1rem;
+        }
+        .timeline-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .skill-badge {
+            background: rgba(255, 235, 59, 0.1);
+            color: var(--amarelo-primario);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        body.light .skill-badge {
+            background: rgba(21, 101, 192, 0.1);
             color: var(--azul-primario);
         }
         /* Projects Section */
@@ -558,18 +735,6 @@
             color: var(--texto-medio);
             font-size: 0.9rem;
         }
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--amarelo-primario);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        body.light .mobile-menu-toggle {
-            color: var(--azul-primario);
-        }
         /* Responsive Design */
         @media (max-width: 768px) {
             .header-content {
@@ -602,6 +767,16 @@
             .skills-grid,
             .projects-grid {
                 grid-template-columns: 1fr;
+            }
+            .timeline {
+                padding-left: 2rem;
+            }
+            .timeline::before {
+                left: 1rem;
+            }
+            .timeline-dot {
+                left: -1.5rem;
+                top: 1rem;
             }
         }
         /* Animations */
@@ -756,28 +931,28 @@
                         <i class="fas fa-code"></i>
                     </div>
                     <h3 class="skill-title">Frontend</h3>
-                    <p>HTML5, CSS3, JavaScript, React, Vue.js, Sass, Tailwind CSS</p>
+                    <p>HTML5, CSS3, JavaScript, React, Vue.js</p>
                 </div>
                 <div class="skill-category animate-on-scroll">
                     <div class="skill-icon">
                         <i class="fas fa-server"></i>
                     </div>
                     <h3 class="skill-title">Backend</h3>
-                    <p>Python, Node.js, Express, Django, PHP, MySQL, PostgreSQL</p>
+                    <p>Php, MySQL, Laravel, Xampp</p>
                 </div>
                 <div class="skill-category animate-on-scroll">
                     <div class="skill-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
                     <h3 class="skill-title">Mobile</h3>
-                    <p>Flutter, Dart, React Native, Progressive Web Apps</p>
+                    <p>Flutter, Dart, Progressive Web Apps</p>
                 </div>
                 <div class="skill-category animate-on-scroll">
                     <div class="skill-icon">
                         <i class="fas fa-tools"></i>
                     </div>
                     <h3 class="skill-title">Ferramentas</h3>
-                    <p>Git, Docker, VS Code, Figma, Adobe XD, Firebase</p>
+                    <p>Git, VS Code, Firebase</p>
                 </div>
             </div>
         </div>
@@ -881,7 +1056,9 @@
             </div>
             <div class="timeline">
                 <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-dot"></div>
+                    <div class="timeline-dot">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
                     <div class="timeline-content">
                         <h3>Ensino Médio Técnico</h3>
                         <span class="timeline-date">2024 - 2025</span>
@@ -895,32 +1072,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="timeline">
-                    <div class="timeline-item animate-on-scroll">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3>Ensino Médio</h3>
-                            <span class="timeline-date">2023 - 2025</span>
-                            <p class="timeline-institution">SESI</p>
-                            <p>Formação geral do Ensino Médio, com foco em disciplinas fundamentais e participação em
-                                projetos de tecnologia e inovação.</p>
-                            <div class="timeline-skills">
-                                <span class="skill-badge">Projetos Interdisciplinares</span>
-                                <span class="skill-badge">Tecnologia</span>
-                                <span class="skill-badge">Inovação</span>
-                            </div>
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Ensino Médio</h3>
+                        <span class="timeline-date">2023 - 2025</span>
+                        <p class="timeline-institution">SESI</p>
+                        <p>Formação geral do Ensino Médio, com foco em disciplinas fundamentais e participação em
+                            projetos de tecnologia e inovação.</p>
+                        <div class="timeline-skills">
+                            <span class="skill-badge">Projetos Interdisciplinares</span>
+                            <span class="skill-badge">Tecnologia</span>
+                            <span class="skill-badge">Inovação</span>
                         </div>
                     </div>
                 </div>
                 <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-dot"></div>
+                    <div class="timeline-dot">
+                        <i class="fas fa-book"></i>
+                    </div>
                     <div class="timeline-content">
                         <h3>Ensino Fundamental</h3>
                         <span class="timeline-date">2015 - 2023</span>
                         <p class="timeline-institution">Escola Ceunsp</p>
                         <p>Base sólida em matemática e ciências, com primeiros contatos com programação e lógica
-                            computacional.
-                        </p>
+                            computacional.</p>
                     </div>
                 </div>
             </div>
@@ -1056,7 +1234,7 @@
                         </div>
                         <div>
                             <h4>Localização</h4>
-                            <p>São Paulo, Brasil</p>
+                            <p>Salto SP, Brasil</p>
                             <span class="contact-link">Disponível para trabalho remoto</span>
                         </div>
                     </div>
@@ -1189,6 +1367,7 @@
             mobileCloseBtn.innerHTML = '<i class="fas fa-times"></i>';
             // Clone navigation links
             const navLinks = document.querySelector('.nav-links').cloneNode(true);
+            navLinks.style.display = 'flex'; // Ensure links are visible in mobile menu
             mobileNavMenu.appendChild(mobileCloseBtn);
             mobileNavMenu.appendChild(navLinks);
             body.appendChild(mobileNavOverlay);
@@ -1202,7 +1381,7 @@
             });
         }
         function openMobileMenu() {
-            if (!mobileNavOverlay) createMobileMenu();
+            if (!mobileNavOverlay || !mobileNavMenu) createMobileMenu();
             mobileNavOverlay.style.display = 'block';
             mobileNavMenu.classList.add('active');
             body.style.overflow = 'hidden';
