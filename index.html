@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agnaldo Scaion - Portfólio</title>
+    <title>Agnaldo Scaion - Desenvolvedor Full-Stack</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="https://i.ibb.co/hFpQhMtP/favicon.png">
     <style>
-        /* Reset básico e variáveis */
+        /* Reset e Variáveis */
         :root {
-            --cor-primaria-dark: #ffeb3b; /* Amarelo para modo escuro */
-            --cor-secundaria-dark: #ffc107;
-            --cor-primaria-light: #1565c0; /* Azul para modo claro */
-            --cor-secundaria-light: #1976d2;
-            --fundo-escuro: #121212;
-            --fundo-medio: #1a1a1a;
-            --fundo-claro: #333333;
-            --texto-claro: #e0e0e0;
-            --texto-escuro: #000000;
-            --sombra: 0 4px 12px rgba(0, 0, 0, 0.5);
-            --fundo-light: #f0f0f0; /* Branco suave para modo claro */
-            --texto-light: #333333;
-            --fundo-light-medio: #e0e0e0;
-            --fundo-light-claro: #ffffff;
+            --amarelo-primario: #ffeb3b;
+            --amarelo-secundario: #ffc107;
+            --azul-primario: #1565c0;
+            --azul-secundario: #1976d2;
+            --fundo-escuro-1: #0a0a0a;
+            --fundo-escuro-2: #1a1a1a;
+            --fundo-escuro-3: #2a2a2a;
+            --texto-claro: #f5f5f5;
+            --texto-medio: #b0b0b0;
+            --fundo-claro-1: #ffffff;
+            --fundo-claro-2: #f8f9fa;
+            --fundo-claro-3: #e9ecef;
+            --texto-escuro: #212529;
+            --sombra-suave: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --sombra-forte: 0 8px 30px rgba(0, 0, 0, 0.2);
+            --transicao: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -33,1214 +36,1373 @@
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
             color: var(--texto-claro);
-            background-color: var(--fundo-escuro);
+            background-color: var(--fundo-escuro-1);
             overflow-x: hidden;
-            transition: background-color 0.5s ease, color 0.5s ease;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0.5; }
-            to { opacity: 1; }
+            transition: var(--transicao);
         }
 
         body.light {
-            color: var(--texto-light);
-            background-color: var(--fundo-light);
-        }
-
-        body.light .cabecalho {
-            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
-            color: var(--texto-light);
-        }
-
-        body.light .cabecalho h1 {
-            background: linear-gradient(to right, var(--cor-primaria-light), var(--cor-secundaria-light));
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        body.light .subtitulo {
-            color: rgba(0, 0, 0, 0.9);
-        }
-
-        body.light .cabecalho-social a {
-            color: var(--cor-primaria-light);
-        }
-
-        body.light .cabecalho-social a:hover {
-            color: var(--texto-light);
-        }
-
-        body.light .menu {
-            background-color: var(--fundo-light-medio);
-        }
-
-        body.light .nav-list li a {
-            color: var(--cor-primaria-light);
-        }
-
-        body.light .nav-list li a:hover {
-            color: var(--fundo-light);
-            background-color: var(--cor-primaria-light);
-        }
-
-        body.light .secao {
-            background-color: var(--fundo-light-claro);
-            border: 1px solid var(--fundo-light-medio);
-        }
-
-        body.light .secao p {
-            color: var(--texto-light);
-        }
-
-        body.light .secao ul li {
-            background-color: var(--fundo-light-medio);
-            border: 1px solid var(--fundo-light-claro);
-        }
-
-        body.light .secao h2 {
-            color: var(--cor-primaria-light);
-        }
-
-        body.light .projetos {
-            background-color: var(--fundo-light-medio);
-            border-left: 4px solid var(--cor-secundaria-light);
-        }
-
-        body.light .botao-github {
-            background-color: var(--cor-secundaria-light);
-            color: var(--fundo-light);
-        }
-
-        body.light .botao-github:hover {
-            background-color: var(--cor-primaria-light);
-            color: var(--texto-light);
-        }
-
-        body.light .rodape {
-            background: linear-gradient(135deg, #e0e0e0 0%, #f0f0f0 100%);
-            color: var(--texto-light);
-        }
-
-        body.light .rodape-links a {
-            color: var(--texto-light);
-        }
-
-        body.light .rodape-links a:hover {
-            color: var(--cor-primaria-light);
-        }
-
-        body.light .rodape-contato i {
-            color: var(--cor-primaria-light);
-        }
-
-        body.light .social-icons a {
-            color: var(--cor-primaria-light);
-        }
-
-        body.light .social-icons a:hover {
-            color: var(--cor-secundaria-light);
-        }
-
-        body.light .certificados-toggle {
-            color: var(--cor-primaria-light);
-        }
-
-        body.light #certificados ul li a {
-            color: var(--cor-secundaria-light);
-        }
-
-        body.light #certificados ul li a:hover {
-            color: var(--cor-primaria-light);
-            background-color: rgba(21, 101, 192, 0.1);
-        }
-
-        body.light .onda path {
-            fill: var(--cor-primaria-light);
-        }
-
-        body.light .menu-toggle span {
-            background-color: var(--cor-primaria-light);
-        }
-
-        body.light .nav-list {
-            background-color: var(--fundo-light-medio);
+            color: var(--texto-escuro);
+            background-color: var(--fundo-claro-2);
         }
 
         .container {
-            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 20px;
         }
 
-        /* Cabeçalho */
-        .cabecalho {
-            background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
-            color: #ffffff;
-            padding: 2rem 0 0;
+        /* Header Modernizado */
+        .header {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--fundo-escuro-1) 0%, var(--fundo-escuro-2) 100%);
+            display: flex;
+            align-items: center;
             position: relative;
             overflow: hidden;
-            animation: fadeIn 0.5s ease-in-out;
         }
 
-        .cabecalho-conteudo {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-            padding-bottom: 2rem;
+        body.light .header {
+            background: linear-gradient(135deg, var(--fundo-claro-1) 0%, var(--fundo-claro-2) 100%);
         }
 
-        .cabecalho-texto {
-            flex: 1;
-            z-index: 2;
-        }
-
-        .cabecalho h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, var(--cor-primaria-dark), var(--cor-secundaria-dark));
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: none;
-        }
-
-        .subtitulo {
-            font-size: 1.2rem;
-            font-weight: 300;
-            margin-bottom: 1.5rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .cabecalho-social {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            align-items: center;
-        }
-
-        .cabecalho-social a {
-            color: var(--cor-primaria-dark);
-            font-size: 1.8rem;
-            transition: all 0.3s ease;
-            transform: scale(1);
-        }
-
-        .cabecalho-social a:hover {
-            color: #ffffff;
-            transform: scale(1.2) translateY(-3px);
-        }
-
-        .cabecalho-imagem {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end;
-            z-index: 1;
-        }
-
-        .imagem-container {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background-color: var(--fundo-claro);
-            border: 5px solid var(--cor-primaria-dark);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .imagem-container::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('https://abre.ai/mMQP') center/cover no-repeat;
-            opacity: 0.8;
-        }
-
-        body.light .imagem-container {
-            border: 5px solid var(--cor-primaria-light); /* Altera a borda para azul no modo claro */
-        }
-
-.botao-contato {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-            background: linear-gradient(45deg, var(--cor-primaria-dark), var(--cor-secundaria-dark));
-            color: var(--texto-escuro);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            margin: 1rem 0;
-            transition: all 0.4s ease;
-            z-index: 2;
-            position: relative;
-            box-shadow: 0 8px 25px rgba(255, 235, 59, 0.4);
-            border: 2px solid transparent;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .botao-contato::before {
+        .header::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, #ffffff, #f5f5f5);
+            background: radial-gradient(circle at 20% 80%, rgba(255, 235, 59, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        body.light .header::before {
+            background: radial-gradient(circle at 20% 80%, rgba(21, 101, 192, 0.05) 0%, transparent 50%);
+        }
+
+        .header-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 4rem;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .header-text h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--amarelo-primario), var(--amarelo-secundario));
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        body.light .header-text h1 {
+            background: linear-gradient(135deg, var(--azul-primario), var(--azul-secundario));
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--texto-medio);
+        }
+
+        .header-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        /* Botões Modernizados */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            border: none;
             border-radius: 50px;
-            opacity: 0;
-            transition: all 0.4s ease;
-            z-index: -1;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transicao);
+            position: relative;
+            overflow: hidden;
         }
 
-        .botao-contato:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 35px rgba(255, 235, 59, 0.6);
-            border: 2px solid var(--cor-primaria-dark);
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
         }
 
-        .botao-contato:hover::before {
-            opacity: 1;
+        .btn:hover::before {
+            left: 100%;
         }
 
-        .botao-contato i {
-            font-size: 1.2rem;
-            animation: pulse 2s infinite;
+        .btn-primary {
+            background: linear-gradient(135deg, var(--amarelo-primario), var(--amarelo-secundario));
+            color: var(--fundo-escuro-1);
+            box-shadow: 0 4px 15px rgba(255, 235, 59, 0.3);
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 235, 59, 0.4);
         }
 
-        body.light .botao-contato {
-            background: linear-gradient(45deg, var(--cor-primaria-light), var(--cor-secundaria-light));
-            color: #ffffff;
+        body.light .btn-primary {
+            background: linear-gradient(135deg, var(--azul-primario), var(--azul-secundario));
+            color: white;
+            box-shadow: 0 4px 15px rgba(21, 101, 192, 0.3);
+        }
+
+        body.light .btn-primary:hover {
             box-shadow: 0 8px 25px rgba(21, 101, 192, 0.4);
         }
 
-        body.light .botao-contato::before {
-            background: linear-gradient(45deg, #ffffff, #f8f9fa);
+        .btn-outline {
+            background: transparent;
+            color: var(--amarelo-primario);
+            border: 2px solid var(--amarelo-primario);
         }
 
-        body.light .botao-contato:hover {
-            box-shadow: 0 15px 35px rgba(21, 101, 192, 0.6);
-            border: 2px solid var(--cor-primaria-light);
-            color: var(--cor-primaria-light);
+        .btn-outline:hover {
+            background: var(--amarelo-primario);
+            color: var(--fundo-escuro-1);
+            transform: translateY(-2px);
         }
 
-        .onda {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            z-index: 1;
+        body.light .btn-outline {
+            color: var(--azul-primario);
+            border-color: var(--azul-primario);
         }
 
-        .onda svg {
-            position: absolute;
-            bottom: 0;
-            left: 0;
+        body.light .btn-outline:hover {
+            background: var(--azul-primario);
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 235, 59, 0.1);
+            border: 2px solid var(--amarelo-primario);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--amarelo-primario);
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: var(--transicao);
+        }
+
+        .social-link:hover {
+            background: var(--amarelo-primario);
+            color: var(--fundo-escuro-1);
+            transform: translateY(-3px);
+        }
+
+        body.light .social-link {
+            background: rgba(21, 101, 192, 0.1);
+            border-color: var(--azul-primario);
+            color: var(--azul-primario);
+        }
+
+        body.light .social-link:hover {
+            background: var(--azul-primario);
+            color: white;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--amarelo-primario), var(--amarelo-secundario));
+            padding: 5px;
+            position: relative;
+        }
+
+        body.light .profile-image {
+            background: linear-gradient(135deg, var(--azul-primario), var(--azul-secundario));
+        }
+
+        .profile-image img {
             width: 100%;
             height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
-        .onda path {
-            fill: var(--cor-primaria-dark);
-        }
-
-        /* Botão de Tema */
+        /* Theme Toggle */
         .theme-toggle {
-            background-color: var(--cor-primaria-dark);
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
             border: none;
-            cursor: pointer;
+            border-radius: 50%;
+            background: var(--amarelo-primario);
+            color: var(--fundo-escuro-1);
             font-size: 1.5rem;
-            color: var(--texto-escuro);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(255, 235, 59, 0.3);
+            cursor: pointer;
+            transition: var(--transicao);
+            z-index: 1000;
+            box-shadow: var(--sombra-suave);
         }
 
         .theme-toggle:hover {
             transform: scale(1.1);
-            box-shadow: 0 4px 12px rgba(255, 235, 59, 0.5);
         }
 
         body.light .theme-toggle {
-            background-color: var(--cor-primaria-light);
-            box-shadow: 0 2px 8px rgba(21, 101, 192, 0.3);
+            background: var(--azul-primario);
+            color: white;
         }
 
-        body.light .theme-toggle:hover {
-            box-shadow: 0 4px 12px rgba(21, 101, 192, 0.5);
-        }
-
-        /* Menu de Navegação - Versão Desktop */
-        .menu {
-            background-color: var(--fundo-medio);
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            position: sticky;
+        /* Navigation */
+        .navigation {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            padding: 1rem 0;
+            transition: var(--transicao);
+        }
+
+        body.light .navigation {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .nav-container {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
         }
 
-        .nav-list {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--amarelo-primario);
         }
 
-        .nav-list li a {
-            color: var(--cor-primaria-dark);
+        body.light .logo {
+            color: var(--azul-primario);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--texto-claro);
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            opacity: 0.9;
-        }
-
-        .nav-list li a:hover {
-            color: var(--texto-escuro);
-            background-color: var(--cor-primaria-dark);
-            transform: translateY(-2px);
-            opacity: 1;
-        }
-
-        body.light .nav-list li a {
-            color: var(--cor-primaria-light);
-        }
-
-        body.light .nav-list li a:hover {
-            color: var(--fundo-light);
-            background-color: var(--cor-primaria-light);
-        }
-
-        /* Menu Mobile */
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            padding: 1rem;
-            position: absolute;
-            top: 50%;
-            right: 15px;
-            transform: translateY(-50%);
-            z-index: 101;
-        }
-
-        .menu-toggle span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: var(--cor-primaria-dark);
-            margin: 5px 0;
-            transition: all 0.3s ease;
-        }
-
-        body.light .menu-toggle span {
-            background-color: var(--cor-primaria-light);
-        }
-
-        /* Conteúdo Principal */
-        .conteudo {
-            padding: 2rem 0;
+            transition: var(--transicao);
             position: relative;
         }
 
-        .secao {
-            margin-bottom: 2rem;
-            background-color: var(--fundo-escuro);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--fundo-claro);
-            transition: transform 0.3s ease;
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--amarelo-primario);
+            transition: var(--transicao);
         }
 
-        .secao:hover {
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        body.light .nav-links a {
+            color: var(--texto-escuro);
+        }
+
+        body.light .nav-links a::after {
+            background: var(--azul-primario);
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background: var(--fundo-escuro-2);
+        }
+
+        body.light .section:nth-child(even) {
+            background: var(--fundo-claro-1);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--amarelo-primario);
+        }
+
+        body.light .section-title {
+            color: var(--azul-primario);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--texto-medio);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--fundo-escuro-3);
+            border-radius: 15px;
+            transition: var(--transicao);
+        }
+
+        .stat-card:hover {
             transform: translateY(-5px);
         }
 
-        .secao h2 {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            color: var(--cor-primaria-dark);
-            margin-bottom: 1.5rem;
-            border-bottom: 3px solid var(--cor-secundaria-dark);
-            display: inline-block;
-            padding-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        body.light .stat-card {
+            background: white;
+            box-shadow: var(--sombra-suave);
         }
 
-        body.light .secao h2 {
-            color: var(--cor-primaria-light);
-            border-bottom: 3px solid var(--cor-secundaria-light);
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--amarelo-primario);
+            display: block;
         }
 
-        .secao p {
-            font-size: 1rem;
-            color: var(--texto-claro);
-            margin-bottom: 1rem;
-            line-height: 1.7;
+        body.light .stat-number {
+            color: var(--azul-primario);
         }
 
-        .secao ul {
-            list-style: none;
-        }
-
-        .secao ul li {
-            background-color: var(--fundo-medio);
-            margin-bottom: 1rem;
-            padding: 1.2rem;
-            border-radius: 6px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            border: 1px solid var(--fundo-claro);
-        }
-
-        .secao ul li:hover {
-            transform: translateX(5px);
-            border-color: var(--cor-primaria-dark);
-        }
-
-        body.light .secao ul li:hover {
-            border-color: var(--cor-primaria-light);
-        }
-
-        .secao ul li strong {
-            color: var(--cor-secundaria-dark);
-        }
-
-        body.light .secao ul li strong {
-            color: var(--cor-secundaria-light);
-        }
-
-        /* Links */
-        a {
-            color: var(--cor-secundaria-dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        a:hover {
-            color: var(--cor-primaria-dark);
-        }
-
-        body.light a {
-            color: var(--cor-secundaria-light);
-        }
-
-        body.light a:hover {
-            color: var(--cor-primaria-light);
-        }
-
-        /* Seção de Contato */
-        #contato ul {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        #contato ul li a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.2rem;
-            background-color: rgba(255, 235, 59, 0.1);
-            border-radius: 6px;
-            border: 1px solid rgba(255, 235, 59, 0.3);
-            width: 100%;
-        }
-
-        #contato ul li a:hover {
-            background-color: rgba(255, 235, 59, 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 2px 8px rgba(255, 235, 59, 0.2);
-        }
-
-        body.light #contato ul li a {
-            background-color: rgba(21, 101, 192, 0.1);
-            border: 1px solid rgba(21, 101, 192, 0.3);
-        }
-
-        body.light #contato ul li a:hover {
-            background-color: rgba(21, 101, 192, 0.2);
-            box-shadow: 0 2px 8px rgba(21, 101, 192, 0.2);
-        }
-
-        /* Seção de Projetos */
-        .projetos {
-            background-color: var(--fundo-medio);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-top: 2rem;
-            border-left: 4px solid var(--cor-secundaria-dark);
-        }
-
-        .projetos h3 {
-            color: var(--cor-primaria-dark);
-            margin-bottom: 1rem;
-        }
-
-        body.light .projetos {
-            border-left: 4px solid var(--cor-secundaria-light);
-        }
-
-        body.light .projetos h3 {
-            color: var(--cor-primaria-light);
-        }
-
-        .botao-github {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            background-color: var(--cor-secundaria-dark);
-            color: var(--texto-escuro);
-            padding: 0.8rem 1.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+        .stat-label {
+            color: var(--texto-medio);
+            font-size: 0.9rem;
             margin-top: 0.5rem;
-            box-shadow: 0 2px 5px rgba(255, 235, 59, 0.3);
-            width: 100%;
-            text-align: center;
         }
 
-        .botao-github:hover {
-            background-color: var(--cor-primaria-dark);
-            color: #313131;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(255, 235, 59, 0.4);
-        }
-
-        body.light .botao-github {
-            background-color: var(--cor-secundaria-light);
-            box-shadow: 0 2px 5px rgba(21, 101, 192, 0.3);
-        }
-
-        body.light .botao-github:hover {
-            background-color: var(--cor-primaria-light);
-            box-shadow: 0 4px 8px rgba(21, 101, 192, 0.4);
-        }
-
-        /* Rodapé */
-        .rodape {
-            background: linear-gradient(135deg, #1a1a1a 0%, #121212 100%);
-            color: #ffffff;
-            padding: 3rem 0 0;
-            position: relative;
-        }
-
-        .rodape::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(to right, transparent, var(--cor-primaria-dark), transparent);
-        }
-
-        body.light .rodape::before {
-            background: linear-gradient(to right, transparent, var(--cor-primaria-light), transparent);
-        }
-
-        .rodape-conteudo {
+        /* Skills Section */
+        .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--fundo-escuro-2);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: var(--transicao);
+            border: 1px solid transparent;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--amarelo-primario);
+        }
+
+        body.light .skill-category {
+            background: white;
+            box-shadow: var(--sombra-suave);
+        }
+
+        body.light .skill-category:hover {
+            border-color: var(--azul-primario);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--amarelo-primario);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: var(--fundo-escuro-1);
+        }
+
+        body.light .skill-icon {
+            background: var(--azul-primario);
+            color: white;
+        }
+
+        .skill-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--amarelo-primario);
+        }
+
+        body.light .skill-title {
+            color: var(--azul-primario);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--fundo-escuro-2);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transicao);
+            border: 1px solid var(--fundo-escuro-3);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--amarelo-primario);
+        }
+
+        body.light .project-card {
+            background: white;
+            box-shadow: var(--sombra-suave);
+            border-color: var(--fundo-claro-3);
+        }
+
+        body.light .project-card:hover {
+            border-color: var(--azul-primario);
+        }
+
+        .project-header {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--amarelo-primario);
+        }
+
+        body.light .project-title {
+            color: var(--azul-primario);
+        }
+
+        .project-description {
+            color: var(--texto-medio);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(255, 235, 59, 0.1);
+            color: var(--amarelo-primario);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        body.light .tech-tag {
+            background: rgba(21, 101, 192, 0.1);
+            color: var(--azul-primario);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--fundo-escuro-2);
+            border-radius: 10px;
+            transition: var(--transicao);
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            background: var(--fundo-escuro-3);
+        }
+
+        body.light .contact-item {
+            background: white;
+            box-shadow: var(--sombra-suave);
+        }
+
+        body.light .contact-item:hover {
+            background: var(--fundo-claro-3);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--amarelo-primario);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--fundo-escuro-1);
+            font-size: 1.2rem;
+        }
+
+        body.light .contact-icon {
+            background: var(--azul-primario);
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--fundo-escuro-1);
+            padding: 3rem 0 1rem;
+            text-align: center;
+            border-top: 1px solid var(--fundo-escuro-3);
+        }
+
+        body.light .footer {
+            background: var(--fundo-claro-1);
+            border-top-color: var(--fundo-claro-3);
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
             margin-bottom: 2rem;
         }
 
-        .rodape-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--cor-primaria-dark);
-        }
-
-        body.light .rodape-info h3 {
-            color: var(--cor-primaria-light);
-        }
-
-        .rodape-info p {
-            opacity: 0.8;
-            line-height: 1.6;
-        }
-
-        .rodape-links h4, .rodape-contato h4, .rodape-social h4 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            color: var(--cor-primaria-dark);
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        body.light .rodape-links h4, body.light .rodape-contato h4, body.light .rodape-social h4 {
-            color: var(--cor-primaria-light);
-        }
-
-        .rodape-links h4::after, .rodape-contato h4::after, .rodape-social h4::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--cor-primaria-dark);
-        }
-
-        body.light .rodape-links h4::after, body.light .rodape-contato h4::after, body.light .rodape-social h4::after {
-            background-color: var(--cor-primaria-light);
-        }
-
-        .rodape-links ul, .rodape-contato ul {
-            list-style: none;
-        }
-
-        .rodape-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .rodape-links a {
-            color: #ffffff;
-            opacity: 0.8;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .rodape-links a:hover {
-            opacity: 1;
-            color: var(--cor-primaria-dark);
-            transform: translateX(5px);
-        }
-
-        body.light .rodape-links a {
-            color: var(--texto-light);
-        }
-
-        body.light .rodape-links a:hover {
-            color: var(--cor-primaria-light);
-        }
-
-        .rodape-contato li {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            opacity: 0.8;
-        }
-
-        .rodape-contato i {
-            color: var(--cor-primaria-dark);
-            width: 20px;
-            text-align: center;
-        }
-
-        body.light .rodape-contato i {
-            color: var(--cor-primaria-light);
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .social-icons a {
-            color: #ffffff;
-            font-size: 1.8rem;
-            opacity: 0.8;
-            transition: all 0.3s ease;
-            transform: scale(1);
-        }
-
-        .social-icons a:hover {
-            color: var(--cor-primaria-dark);
-            opacity: 1;
-            transform: scale(1.2) translateY(-3px);
-        }
-
-        body.light .social-icons a {
-            color: var(--cor-primaria-light);
-        }
-
-        body.light .social-icons a:hover {
-            color: var(--cor-secundaria-light);
-        }
-
-        .rodape-copyright {
-            text-align: center;
-            padding: 1.5rem 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .rodape-copyright p {
-            opacity: 0.7;
+        .footer-text {
+            color: var(--texto-medio);
             font-size: 0.9rem;
         }
 
-        /* Certificados - Estilo Acordeão */
-        .certificados-toggle {
-            margin-left: 10px;
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--amarelo-primario);
+            font-size: 1.5rem;
             cursor: pointer;
-            transition: transform 0.3s ease;
-            color: var(--cor-primaria-dark);
         }
 
-        .certificados-container {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease, opacity 0.3s ease;
-            opacity: 0;
+        body.light .mobile-menu-toggle {
+            color: var(--azul-primario);
         }
 
-        .certificados-container.active {
-            max-height: 1000px;
-            opacity: 1;
-        }
-
-        .certificados-toggle.active {
-            transform: rotate(180deg);
-        }
-
-        #certificados ul li a {
-            display: inline-block;
-            padding: 0.5rem;
-            border-radius: 4px;
-            color: var(--cor-secundaria-dark);
-            word-break: break-word;
-        }
-
-        #certificados ul li a:hover {
-            background-color: rgba(255, 235, 59, 0.1);
-            color: var(--cor-primaria-dark);
-        }
-
-        body.light .certificados-toggle {
-            color: var(--cor-primaria-light);
-        }
-
-        body.light #certificados ul li a {
-            color: var(--cor-secundaria-light);
-        }
-
-        body.light #certificados ul li a:hover {
-            background-color: rgba(21, 101, 192, 0.1);
-            color: var(--cor-primaria-light);
-        }
-
-        /* Mobile Styles */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .menu {
-                padding: 0.8rem 0;
-                height: 60px;
-                display: flex;
-                align-items: center;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .nav-list {
-                position: fixed;
-                top: 0;
-                left: -100%;
-                width: 80%;
-                max-width: 300px;
-                height: 100vh;
-                background-color: var(--fundo-medio);
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 5rem 1.5rem 2rem;
-                box-shadow: 2px 0 15px rgba(0, 0, 0, 0.7);
-                transition: left 0.3s ease;
-            }
-
-            .nav-list.active {
-                left: 0;
-            }
-
-            .nav-list li {
-                width: 100%;
-            }
-
-            .nav-list li a {
-                display: block;
-                width: 100%;
-                padding: 1rem;
-                border-left: 3px solid transparent;
-            }
-
-            .nav-list li a:hover {
-                background-color: rgba(255, 235, 59, 0.1);
-                color: var(--cor-primaria-dark);
-                border-left: 3px solid var(--cor-primaria-dark);
-                transform: translateX(5px);
-            }
-
-            body.light .nav-list li a:hover {
-                background-color: rgba(21, 101, 192, 0.1);
-                color: var(--cor-primaria-light);
-                border-left: 3px solid var(--cor-primaria-light);
-            }
-
-            /* Animação do hamburger */
-            .menu-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            .menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .menu-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
-            }
-
-            /* Ajustes de conteúdo */
-            .secao {
-                padding: 1.2rem;
-            }
-
-            .botao-github {
-                padding: 0.8rem;
-            }
-
-            .cabecalho-conteudo {
-                flex-direction: column;
+            .header-content {
+                grid-template-columns: 1fr;
                 text-align: center;
             }
 
-            .cabecalho-social {
+            .profile-image {
+                width: 200px;
+                height: 200px;
+            }
+
+            .about-content,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .header-actions {
                 justify-content: center;
             }
 
-            .cabecalho-imagem {
-                margin-top: 1.5rem;
+            .stats-grid {
+                grid-template-columns: 1fr;
             }
 
-            .imagem-container {
-                width: 150px;
-                height: 150px;
-            }
-
-            .rodape-conteudo {
+            .skills-grid,
+            .projects-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        @media (max-width: 480px) {
-            .cabecalho {
-                padding: 1.5rem 0;
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
 
-            .conteudo {
-                padding: 1rem 0;
-            }
-
-            .secao {
-                margin-bottom: 1.5rem;
-            }
-
-            #certificados ul li {
-                margin-bottom: 0.8rem;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        /* Menu Mobile - Versão Funcional */
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            padding: 15px;
-            position: absolute;
-            top: 50%;
-            left: 15px;
-            transform: translateY(-50%);
-            z-index: 1001;
-            background: transparent;
-            border: none;
-            transition: all 0.4s ease;
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
         }
 
-        .menu-toggle .bar {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: var(--cor-primaria-dark);
-            margin: 5px 0;
-            transition: all 0.3s ease;
-        }
-
-        body.light .menu-toggle .bar {
-            background-color: var(--cor-primaria-light);
-        }
-
-        /* Estado ativo - X */
-        .menu-toggle.active {
-            left: calc(100% - 55px);
-        }
-
-        .menu-toggle.active .bar:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .menu-toggle.active .bar:nth-child(2) {
+        /* Scroll Animations */
+        .animate-on-scroll {
             opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
         }
 
-        .menu-toggle.active .bar:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
+        .animate-on-scroll.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
+
 <body>
-    <header class="cabecalho">
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="navigation">
         <div class="container">
-            <div class="cabecalho-conteudo">
-                <div class="cabecalho-texto">
-                    <h1>Agnaldo Scaion</h1>
-                    <p class="subtitulo">Desenvolvedor Front-End & Estudante de ADS</p>
-                    <div class="cabecalho-social">
-                        <button class="theme-toggle" id="theme-toggle">
-                            <i class="fas fa-moon"></i>
-                        </button>
-                        <a href="https://github.com/AgnaldoScaion" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/agnaldo-j%C3%BAnior-81364934b/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://wa.me/5511983490572" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                <div class="cabecalho-imagem">
-                    <div class="imagem-container">
-                        <img src="https://i.ibb.co/B5h7HVMr/Coverimg.jpg" alt="Foto de Agnaldo Scaion" style="width: 201px; height: 200px; object-fit: cover; box-shadow: 0 4px 16px rgba(0,0,0,0.15);">
-                    </div>
-                </div>
+            <div class="nav-container">
+                <div class="logo">AS</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#skills">Habilidades</a></li>
+                    <li><a href="#projects">Projetos</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+                <button class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-            <a href="#contato" class="botao-contato">Contate-me</a>
-        </div>
-        <div class="onda">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="#ffeb3b"></path>
-                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="#ffeb3b"></path>
-                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="#ffeb3b"></path>
-            </svg>
-        </div>
-    </header>
-    <nav class="menu">
-        <div class="container">
-            <div class="menu-toggle" id="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-list" id="nav-list">
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#experiencia">Experiência</a></li>
-                <li><a href="#formacao">Formação</a></li>
-                <li><a href="#certificados">Certificados</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
         </div>
     </nav>
-    <main class="conteudo">
+
+    <!-- Header -->
+    <section id="home" class="header">
         <div class="container">
-            <section id="sobre" class="secao">
-                <h2>Sobre</h2>
-                <p> Olá, sou o Agnaldo, tenho 17 anos e sou estudante do SESI/SENAI, atualmente na sede SESI CE 125. Estou aproveitando muito essa experiência, pois ela me permite aprender e desenvolver habilidades em diversas áreas, combinando teoria e prática. Desde cedo, me interesso por tecnologia, especialmente computadores, e, ao longo dos anos, adquiri conhecimentos técnicos que me destacam nesse campo. Minha curiosidade e dedicação me levaram a dominar conceitos que muitos ainda não exploraram, e estou sempre buscando me aprofundar ainda mais. </p>
-                <div class="projetos">
-                    <h3>Meus Projetos</h3>
-                    <p>Confira meus projetos e contribuições no GitHub:</p>
-                    <a href="https://github.com/AgnaldoScaion" target="_blank" class="botao-github"> <i class="fab fa-github"></i> Visitar GitHub </a>
+            <div class="header-content fade-in-up">
+                <div class="header-text">
+                    <h1>Agnaldo Scaion</h1>
+                    <p class="header-subtitle">Desenvolvedor Full-Stack & Futuro Analista de Sistemas</p>
+                    <p class="header-description">
+                        Transformando ideias em código há mais de um ano. Especializado em desenvolvimento web moderno
+                        e sempre em busca de novos desafios tecnológicos. Atualmente cursando Análise e Desenvolvimento
+                        de Sistemas no SESI/SENAI.
+                    </p>
+                    <div class="header-actions">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i>
+                            Ver Projetos
+                        </a>
+                        <a href="#contact" class="btn btn-outline">
+                            <i class="fas fa-envelope"></i>
+                            Entre em Contato
+                        </a>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/AgnaldoScaion" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/agnaldo-j%C3%BAnior-81364934b/" target="_blank"
+                            class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://wa.me/5511983490572" target="_blank" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
                 </div>
-            </section>
-            <section id="experiencia" class="secao">
-                <h2>Experiência</h2>
-                <ul>
-                    <li> <strong>Linguagens de Marcação e Programação (HTML e CSS, Python, JS, Dart, etc.)</strong> - (2024 - Em Andamento) <p>Desenvolvi habilidades em diversas linguagens de marcação e programação durante o curso.</p> </li>
-                    <li> <strong>Análise e Desenvolvimento de Sistemas</strong> - (2024 - Em Andamento) <p>Aprendi sobre o funcionamento básico de computadores, sistemas operacionais e redes.</p> </li>
-                </ul>
-            </section>
-            <section id="formacao" class="secao">
-                <h2>Formação</h2>
-                <ul>
-                    <li><strong>Ensino Médio Técnico</strong> - SESI/SENAI (2024 - Previsão de Conclusão 2026)</li>
-                    <li><strong>Ensino Fundamental</strong> - Escola Ceunsp (2015 - 2023)</li>
-                </ul>
-            </section>
-            <section id="certificados" class="secao">
-                <h2> Certificados <i class="fas fa-chevron-down certificados-toggle"></i> </h2>
-                <div class="certificados-container">
-                    <ul>
-                        <li> <strong>Certificado</strong> - <a href="./certificados/1POR DENTRO DA SEGURANÇA CIBERNÉTICA.pdf" target="_blank">POR DENTRO DA SEGURANÇA CIBERNÉTICA</a> </li>
-                        <li> <strong>Certificado</strong> - <a href="./certificados/2ÉTICA NA INTELIGÊNCIA ARTIFICIAL.pdf" target="_blank">ÉTICA NA INTELIGÊNCIA ARTIFICIAL</a> </li>
-                        <li> <strong>Certificado</strong> - <a href="./certificados/3DESVENDANDO A DESCARBONIZAÇÃO.pdf" target="_blank">DESVENDANDO A DESCARBONIZAÇÃO</a> </li>
-                        <li> <strong>Certificado</strong> - <a href="./certificados/4DESVENDANDO O ESG.pdf" target="_blank">DESVENDANDO O ESG</a> </li>
-                        <li> <strong>Certificado</strong> - <a href="./certificados/5DESVENDANDO O 5G.pdf" target="_blank">DESVENDANDO O 5G</a> </li>
-                        <li> <strong>Certificado</strong> - <a href="./certificados/6PRIVACIDADE E PROTEÇÃO DE DADOS (LGPD).pdf" target="_blank">PRIVACIDADE E PROTEÇÃO DE DADOS (LGPD)</a> </li>
-                        <li> <strong>Certificado</strong> - <a href="./certificados/7ECONOMIA CIRCULAR.pdf" target="_blank">ECONOMIA CIRCULAR</a> </li>
-                    </ul>
+                <div class="profile-image">
+                    <img src="https://i.ibb.co/B5h7HVMr/Coverimg.jpg" alt="Agnaldo Scaion">
                 </div>
-            </section>
-            <section id="contato" class="secao">
-                <h2>Contato</h2>
-                <p>Você pode entrar em contato comigo através dos seguintes meios:</p>
-                <ul>
-                    <li><strong>Email:</strong> <a href="mailto:agnaldoscaionm@gmail.com?subject=Contato%20via%20portfólio&body=Olá%20Agnaldo,%20gostaria%20de%20falar%20com%20você%20sobre..." target="_blank"> agnaldoscaionm@gmail.com </a> </li>
-                    <li><strong>WhatsApp:</strong> <a href="https://wa.me/5511983490572?text=Olá Agnaldo gostaria de falar com você sobre..." target="_blank">Clique aqui</a></li>
-                    <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/agnaldo-j%C3%BAnior-81364934b/" target="_blank">Clique aqui</a></li>
-                </ul>
-            </section>
+            </div>
         </div>
-    </main>
-    <footer class="rodape">
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
         <div class="container">
-            <div class="rodape-conteudo">
-                <div class="rodape-info">
-                    <h3>Agnaldo Scaion</h3>
-                    <p>Desenvolvedor Front-End | Estudante de ADS</p>
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Sobre Mim</h2>
+                <p class="section-subtitle">
+                    Conhecendo minha jornada na tecnologia e minha paixão pelo desenvolvimento
+                </p>
+            </div>
+            <div class="about-content">
+                <div class="about-text animate-on-scroll">
+                    <p>
+                        Sou um desenvolvedor apaixonado por tecnologia com 17 anos, atualmente estudando no SESI/SENAI.
+                        Minha jornada começou cedo, movida pela curiosidade sobre como as coisas funcionam no mundo
+                        digital.
+                    </p>
+                    <p>
+                        Ao longo dos anos, desenvolvi expertise em múltiplas linguagens de programação e frameworks,
+                        sempre focando em criar soluções eficientes e user-friendly. Acredito que a tecnologia deve
+                        simplificar a vida das pessoas.
+                    </p>
+                    <p>
+                        Quando não estou codando, gosto de explorar novas tecnologias, contribuir para projetos
+                        open-source e compartilhar conhecimento com a comunidade.
+                    </p>
                 </div>
-                <div class="rodape-links">
-                    <h4>Links Rápidos</h4>
-                    <ul>
-                        <li><a href="#sobre">Sobre</a></li>
-                        <li><a href="#experiencia">Experiência</a></li>
-                        <li><a href="#formacao">Formação</a></li>
-                        <li><a href="#certificados">Certificados</a></li>
-                        <li><a href="#contato">Contato</a></li>
-                    </ul>
-                </div>
-                <div class="rodape-contato">
-                    <h4>Entre em Contato</h4>
-                    <ul>
-                        <li><i class="fas fa-envelope"></i> agnaldoscaionm@gmail.com</li>
-                        <li><i class="fas fa-phone"></i> (11) 98349-0572</li>
-                        <li><i class="fas fa-map-marker-alt"></i> São Paulo, Brasil</li>
-                    </ul>
-                </div>
-                <div class="rodape-social">
-                    <h4>Redes Sociais</h4>
-                    <div class="social-icons">
-                        <a href="https://github.com/AgnaldoScaion" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/agnaldo-j%C3%BAnior-81364934b/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://wa.me/5511983490572" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <div class="stats-grid animate-on-scroll">
+                    <div class="stat-card">
+                        <span class="stat-number">2+</span>
+                        <span class="stat-label">Projetos Concluídos</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">3+</span>
+                        <span class="stat-label">Projetos em Desenvolvimento</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">2+</span>
+                        <span class="stat-label">Anos de Experiência</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Dedicação</span>
                     </div>
                 </div>
             </div>
-            <div class="rodape-copyright">
-                <p>&copy; 2025 Agnaldo Scaion. Todos os direitos reservados.</p>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Habilidades Técnicas</h2>
+                <p class="section-subtitle">
+                    Tecnologias e ferramentas que domino para criar soluções inovadoras
+                </p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category animate-on-scroll">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="skill-title">Frontend</h3>
+                    <p>HTML5, CSS3, JavaScript, React, Vue.js, Sass, Tailwind CSS</p>
+                </div>
+                <div class="skill-category animate-on-scroll">
+                    <div class="skill-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="skill-title">Backend</h3>
+                    <p>Python, Node.js, Express, Django, PHP, MySQL, PostgreSQL</p>
+                </div>
+                <div class="skill-category animate-on-scroll">
+                    <div class="skill-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="skill-title">Mobile</h3>
+                    <p>Flutter, Dart, React Native, Progressive Web Apps</p>
+                </div>
+                <div class="skill-category animate-on-scroll">
+                    <div class="skill-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="skill-title">Ferramentas</h3>
+                    <p>Git, Docker, VS Code, Figma, Adobe XD, Firebase</p>
+                </div>
             </div>
         </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Projetos em Destaque</h2>
+                <p class="section-subtitle">
+                    Alguns dos projetos que desenvolvi e que demonstram minhas habilidades
+                </p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card animate-on-scroll">
+                    <div class="project-header">
+                        <h3 class="project-title">Backend do Projeto Final</h3>
+                        <p class="project-description">
+                            Ainda em desenvolvimento, projeto final do curso de Análise e Desenvolvimento de Sistemas no
+                            SESI/SENAI.
+                            Buscando melhorar a experiência de compra online, o Bella Avventura é um site de viagens que
+                            visa
+                            oferecer uma plataforma intuitiva e eficiente para os usuários.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Xampp</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://github.com/AgnaldoScaion/bella_back_novo" target="_blank"
+                                class="btn btn-outline btn-sm">
+                                <i class="fab fa-github"></i>
+                                Código
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card animate-on-scroll">
+                    <div class="project-header">
+                        <h3 class="project-title">App Clinica</h3>
+                        <p class="project-description">
+                            A SP Medical Group, fundada em 2020 por Dr. Fernando Strada em Salto, destaca-se na saúde
+                            com especialistas em pediatria e odontologia. Devido ao crescimento, a gestão manual dos
+                            registros tornou-se ineficiente, levando Dr. Strada a contratar você para desenvolver um
+                            sistema web integrado que automatize a gestão de pacientes.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Xampp</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://github.com/AgnaldoScaion/appclinica" target="_blank"
+                                class="btn btn-outline btn-sm">
+                                <i class="fab fa-github"></i>
+                                Código
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card animate-on-scroll">
+                    <div class="project-header">
+                        <h3 class="project-title">App Sp Medical Group</h3>
+                        <p class="project-description">
+                            Desenvolver um sistema web integrado que permitirá a gestão automatizada da clínica,
+                            facilitando o acesso e o controle dos cadastros de pacientes. Seu desafio é desenvolver um
+                            sistema CRUD completo para o cadastro de pacientes da clínica
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Xampp</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://github.com/AgnaldoScaion/sp_medical_group" target="_blank"
+                                class="btn btn-outline btn-sm">
+                                <i class="fab fa-github"></i>
+                                Código
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="https://github.com/AgnaldoScaion" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-github"></i>
+                    Ver Todos os Projetos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Experiência & Formação</h2>
+                <p class="section-subtitle">
+                    Minha trajetória educacional e profissional na área de tecnologia
+                </p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Ensino Médio Técnico</h3>
+                        <span class="timeline-date">2024 - 2025</span>
+                        <p class="timeline-institution">SESI/SENAI - São Paulo</p>
+                        <p>Curso integrado focado em Análise e Desenvolvimento de Sistemas, com ênfase em programação,
+                            banco de dados e desenvolvimento web.</p>
+                        <div class="timeline-skills">
+                            <span class="skill-badge">Programação</span>
+                            <span class="skill-badge">Banco de Dados</span>
+                            <span class="skill-badge">Desenvolvimento Web</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Ensino Médio</h3>
+                            <span class="timeline-date">2023 - 2025</span>
+                            <p class="timeline-institution">SESI</p>
+                            <p>Formação geral do Ensino Médio, com foco em disciplinas fundamentais e participação em
+                                projetos de tecnologia e inovação.</p>
+                            <div class="timeline-skills">
+                                <span class="skill-badge">Projetos Interdisciplinares</span>
+                                <span class="skill-badge">Tecnologia</span>
+                                <span class="skill-badge">Inovação</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Ensino Fundamental</h3>
+                        <span class="timeline-date">2015 - 2023</span>
+                        <p class="timeline-institution">Escola Ceunsp</p>
+                        <p>Base sólida em matemática e ciências, com primeiros contatos com programação e lógica
+                            computacional.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications" class="section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Certificações</h2>
+                <p class="section-subtitle">
+                    Cursos e certificações que complementam minha formação técnica
+                </p>
+            </div>
+            <div class="certifications-grid">
+                <div class="cert-card animate-on-scroll">
+                    <div class="cert-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Segurança Cibernética</h3>
+                    <p>Por Dentro da Segurança Cibernética - Fundamentos de proteção digital</p>
+                    <a href="./certificados/1POR DENTRO DA SEGURANÇA CIBERNÉTICA.pdf" target="_blank" class="cert-link">
+                        <i class="fas fa-external-link-alt"></i>
+                        Ver Certificado
+                    </a>
+                </div>
+                <div class="cert-card animate-on-scroll">
+                    <div class="cert-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Ética em IA</h3>
+                    <p>Ética na Inteligência Artificial - Princípios e práticas responsáveis</p>
+                    <a href="./certificados/2ÉTICA NA INTELIGÊNCIA ARTIFICIAL.pdf" target="_blank" class="cert-link">
+                        <i class="fas fa-external-link-alt"></i>
+                        Ver Certificado
+                    </a>
+                </div>
+                <div class="cert-card animate-on-scroll">
+                    <div class="cert-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sustentabilidade</h3>
+                    <p>Desvendando a Descarbonização - Tecnologia para um futuro sustentável</p>
+                    <a href="./certificados/3DESVENDANDO A DESCARBONIZAÇÃO.pdf" target="_blank" class="cert-link">
+                        <i class="fas fa-external-link-alt"></i>
+                        Ver Certificado
+                    </a>
+                </div>
+                <div class="cert-card animate-on-scroll">
+                    <div class="cert-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>ESG</h3>
+                    <p>Desvendando o ESG - Environmental, Social and Governance</p>
+                    <a href="./certificados/4DESVENDANDO O ESG.pdf" target="_blank" class="cert-link">
+                        <i class="fas fa-external-link-alt"></i>
+                        Ver Certificado
+                    </a>
+                </div>
+                <div class="cert-card animate-on-scroll">
+                    <div class="cert-icon">
+                        <i class="fas fa-signal"></i>
+                    </div>
+                    <h3>Tecnologia 5G</h3>
+                    <p>Desvendando o 5G - Próxima geração de conectividade</p>
+                    <a href="./certificados/5DESVENDANDO O 5G.pdf" target="_blank" class="cert-link">
+                        <i class="fas fa-external-link-alt"></i>
+                        Ver Certificado
+                    </a>
+                </div>
+                <div class="cert-card animate-on-scroll">
+                    <div class="cert-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>LGPD</h3>
+                    <p>Privacidade e Proteção de Dados - Lei Geral de Proteção de Dados</p>
+                    <a href="./certificados/6PRIVACIDADE E PROTEÇÃO DE DADOS (LGPD).pdf" target="_blank"
+                        class="cert-link">
+                        <i class="fas fa-external-link-alt"></i>
+                        Ver Certificado
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Vamos Trabalhar Juntos</h2>
+                <p class="section-subtitle">
+                    Tem um projeto em mente? Estou sempre aberto a novas oportunidades e desafios
+                </p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info animate-on-scroll">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>agnaldoscaionm@gmail.com</p>
+                            <a href="mailto:agnaldoscaionm@gmail.com?subject=Oportunidade%20de%20Trabalho&body=Olá%20Agnaldo,%20gostaria%20de%20discutir%20um%20projeto..."
+                                class="contact-link">Enviar Email</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p>(11) 98349-0572</p>
+                            <a href="https://wa.me/5511983490572?text=Olá%20Agnaldo,%20vi%20seu%20portfólio%20e%20gostaria%20de%20conversar%20sobre..."
+                                target="_blank" class="contact-link">Chamar no WhatsApp</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <p>Conecte-se comigo</p>
+                            <a href="https://www.linkedin.com/in/agnaldo-j%C3%BAnior-81364934b/" target="_blank"
+                                class="contact-link">Ver Perfil</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Localização</h4>
+                            <p>São Paulo, Brasil</p>
+                            <span class="contact-link">Disponível para trabalho remoto</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-cta animate-on-scroll">
+                    <div class="cta-card">
+                        <h3>Pronto para começar?</h3>
+                        <p>Estou sempre em busca de novos desafios e oportunidades para aplicar minhas habilidades em
+                            projetos inovadores.</p>
+                        <div class="cta-features">
+                            <div class="feature">
+                                <i class="fas fa-clock"></i>
+                                <span>Resposta rápida</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-handshake"></i>
+                                <span>Colaboração efetiva</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-rocket"></i>
+                                <span>Entrega de qualidade</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/5511983490572?text=Olá%20Agnaldo,%20tenho%20interesse%20em%20discutir%20um%20projeto..."
+                            target="_blank" class="btn btn-primary btn-lg">
+                            <i class="fas fa-paper-plane"></i>
+                            Iniciar Conversa
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-social">
+                <a href="https://github.com/AgnaldoScaion" target="_blank" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/agnaldo-j%C3%BAnior-81364934b/" target="_blank"
+                    class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://wa.me/5511983490572" target="_blank" class="social-link">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+            <p class="footer-text">
+                © 2025 Agnaldo Scaion. Todos os direitos reservados.
+            </p>
+        </div>
     </footer>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('mobile-menu');
-            const navList = document.getElementById('nav-list');
-            menuToggle.addEventListener('click', function() {
-                this.classList.toggle('active');
-                navList.classList.toggle('active');
-                if (navList.classList.contains('active')) {
-                    const overlay = document.createElement('div');
-                    overlay.id = 'menu-overlay';
-                    overlay.style.position = 'fixed';
-                    overlay.style.top = '0';
-                    overlay.style.left = '0';
-                    overlay.style.width = '100%';
-                    overlay.style.height = '100%';
-                    overlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
-                    overlay.style.zIndex = '999';
-                    overlay.addEventListener('click', closeMenu);
-                    document.body.appendChild(overlay);
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    closeMenu();
-                }
-            });
-            function closeMenu() {
-                const overlay = document.getElementById('menu-overlay');
-                if (overlay) {
-                    overlay.remove();
-                }
-                menuToggle.classList.remove('active');
-                navList.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-            document.querySelectorAll('.nav-list a').forEach(link => {
-                link.addEventListener('click', closeMenu);
-            });
-            const certificadosToggle = document.querySelector('.certificados-toggle');
-            const certificadosContainer = document.querySelector('.certificados-container');
-            if (certificadosToggle && certificadosContainer) {
-                certificadosToggle.addEventListener('click', function() {
-                    this.classList.toggle('active');
-                    certificadosContainer.classList.toggle('active');
-                });
-            }
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const moonIcon = '<i class="fas fa-moon"></i>';
+        const sunIcon = '<i class="fas fa-sun"></i>';
 
-            // Tema toggle
-            const themeToggle = document.getElementById('theme-toggle');
-            const body = document.body;
-            const moonIcon = '<i class="fas fa-moon"></i>';
-            const sunIcon = '<i class="fas fa-sun"></i>';
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'light') {
+            body.classList.add('light');
+            themeToggle.innerHTML = sunIcon;
+        }
 
-            // Verificar preferência salva
-            if (localStorage.getItem('theme') === 'light') {
-                body.classList.add('light');
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light');
+            if (body.classList.contains('light')) {
                 themeToggle.innerHTML = sunIcon;
+                localStorage.setItem('theme', 'light');
             } else {
                 themeToggle.innerHTML = moonIcon;
+                localStorage.setItem('theme', 'dark');
             }
+        });
 
-            themeToggle.addEventListener('click', function() {
-                body.style.animation = 'fadeIn 0.5s ease-in-out';
-                body.classList.toggle('light');
-                if (body.classList.contains('light')) {
-                    themeToggle.innerHTML = sunIcon;
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    themeToggle.innerHTML = moonIcon;
-                    localStorage.setItem('theme', 'dark');
-                }
-                // Reset animation após completar
-                setTimeout(() => {
-                    body.style.animation = '';
-                }, 500);
-            });
-        });
+        // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animation class
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navigation background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.navigation');
+            if (window.scrollY > 100) {
+                nav.style.background = body.classList.contains('light')
+                    ? 'rgba(255, 255, 255, 0.98)'
+                    : 'rgba(26, 26, 26, 0.98)';
+            } else {
+                nav.style.background = body.classList.contains('light')
+                    ? 'rgba(255, 255, 255, 0.95)'
+                    : 'rgba(26, 26, 26, 0.95)';
+            }
+        });
+
+        // Mobile Menu Implementation
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        let mobileNavOverlay, mobileNavMenu, mobileCloseBtn;
+
+        function createMobileMenu() {
+            // Create overlay
+            mobileNavOverlay = document.createElement('div');
+            mobileNavOverlay.className = 'mobile-nav-overlay';
+
+            // Create mobile menu
+            mobileNavMenu = document.createElement('div');
+            mobileNavMenu.className = 'mobile-nav-menu';
+
+            // Create close button
+            mobileCloseBtn = document.createElement('button');
+            mobileCloseBtn.className = 'mobile-close';
+            mobileCloseBtn.innerHTML = '<i class="fas fa-times"></i>';
+
+            // Clone navigation links
+            const navLinks = document.querySelector('.nav-links').cloneNode(true);
+
+            mobileNavMenu.appendChild(mobileCloseBtn);
+            mobileNavMenu.appendChild(navLinks);
+            body.appendChild(mobileNavOverlay);
+            body.appendChild(mobileNavMenu);
+
+            // Add event listeners
+            mobileCloseBtn.addEventListener('click', closeMobileMenu);
+            mobileNavOverlay.addEventListener('click', closeMobileMenu);
+
+            // Close menu when clicking on links
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+        }
+
+        function openMobileMenu() {
+            if (!mobileNavOverlay) createMobileMenu();
+            mobileNavOverlay.style.display = 'block';
+            mobileNavMenu.classList.add('active');
+            body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            if (mobileNavOverlay && mobileNavMenu) {
+                mobileNavOverlay.style.display = 'none';
+                mobileNavMenu.classList.remove('active');
+                body.style.overflow = '';
+            }
+        }
+
+        // Mobile menu toggle event
+        mobileMenuToggle?.addEventListener('click', () => {
+            if (mobileNavMenu && mobileNavMenu.classList.contains('active')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+
+        // Close mobile menu on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
+            }
+        });
+
+        // Update stats with animation
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                const increment = target / 50;
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(current) + (stat.textContent.includes('+') ? '+' : '') +
+                        (stat.textContent.includes('%') ? '%' : '');
+                }, 50);
+            });
+        }
+
+        // Animate stats when visible
+        const statsSection = document.querySelector('.stats-grid');
+        if (statsSection) {
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateStats();
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            });
+            statsObserver.observe(statsSection);
+        }
     </script>
 </body>
+
 </html>
