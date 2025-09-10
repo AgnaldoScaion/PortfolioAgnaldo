@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Agnaldo Scaion - Desenvolvedor Full-Stack</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -48,6 +48,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            width: 100%;
         }
         /* Header Modernizado */
         .header {
@@ -57,6 +58,7 @@
             align-items: center;
             position: relative;
             overflow: hidden;
+            padding-top: 80px;
         }
         body.light .header {
             background: linear-gradient(135deg, var(--fundo-claro-1) 0%, var(--fundo-claro-2) 100%);
@@ -77,17 +79,21 @@
         .header-content {
             display: grid;
             grid-template-columns: 1fr 300px;
-            gap: 4rem;
+            gap: 2rem;
             align-items: center;
-            z-index: 2;
+            width: 100%;
+        }
+        .header-text {
+            text-align: center;
         }
         .header-text h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 700;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--amarelo-primario), var(--amarelo-secundario));
             background-clip: text;
             -webkit-text-fill-color: transparent;
+            line-height: 1.2;
         }
         body.light .header-text h1 {
             background: linear-gradient(135deg, var(--azul-primario), var(--azul-secundario));
@@ -95,22 +101,25 @@
             -webkit-text-fill-color: transparent;
         }
         .header-subtitle {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             font-weight: 400;
             margin-bottom: 1.5rem;
             color: var(--texto-medio);
         }
         .header-description {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
             line-height: 1.8;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .header-actions {
             display: flex;
             gap: 1rem;
             margin-bottom: 2rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
         /* Botões Modernizados */
         .btn {
@@ -121,7 +130,7 @@
             border: none;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: clamp(0.8rem, 2vw, 1rem);
             text-decoration: none;
             cursor: pointer;
             transition: var(--transicao);
@@ -179,6 +188,7 @@
         .social-links {
             display: flex;
             gap: 1rem;
+            justify-content: center;
         }
         .social-link {
             width: 50px;
@@ -215,6 +225,7 @@
             background: linear-gradient(135deg, var(--amarelo-primario), var(--amarelo-secundario));
             padding: 5px;
             position: relative;
+            justify-self: center;
         }
         body.light .profile-image {
             background: linear-gradient(135deg, var(--azul-primario), var(--azul-secundario));
@@ -268,9 +279,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 20px;
         }
         .logo {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             font-weight: 700;
             color: var(--amarelo-primario);
         }
@@ -280,12 +292,13 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: clamp(1rem, 2vw, 2rem);
         }
         .nav-links a {
             color: var(--texto-claro);
             text-decoration: none;
             font-weight: 500;
+            font-size: clamp(0.8rem, 2vw, 1rem);
             transition: var(--transicao);
             position: relative;
         }
@@ -334,8 +347,8 @@
             position: fixed;
             top: 0;
             right: -100%;
-            width: 75%;
-            max-width: 300px;
+            width: 85%;
+            max-width: 350px;
             height: 100%;
             background: var(--fundo-escuro-2);
             z-index: 999;
@@ -355,8 +368,9 @@
             margin-top: 2rem;
         }
         .mobile-nav-menu .nav-links a {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
             color: var(--texto-claro);
+            text-align: center;
         }
         body.light .mobile-nav-menu .nav-links a {
             color: var(--texto-escuro);
@@ -387,7 +401,7 @@
             border-bottom-color: var(--fundo-claro-3);
         }
         .mobile-header h3 {
-            font-size: 1.5rem;
+            font-size: clamp(1.3rem, 4vw, 1.5rem);
             font-weight: 700;
             margin-bottom: 0.5rem;
             color: var(--amarelo-primario);
@@ -396,7 +410,7 @@
             color: var(--azul-primario);
         }
         .mobile-header p {
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
             color: var(--texto-medio);
         }
         /* Mobile Menu Animation */
@@ -415,7 +429,7 @@
         }
         /* Sections */
         .section {
-            padding: 5rem 0;
+            padding: 4rem 0;
             position: relative;
         }
         .section:nth-child(even) {
@@ -426,10 +440,10 @@
         }
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
         .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(1.8rem, 5vw, 3rem);
             font-weight: 700;
             margin-bottom: 1rem;
             color: var(--amarelo-primario);
@@ -438,7 +452,7 @@
             color: var(--azul-primario);
         }
         .section-subtitle {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             color: var(--texto-medio);
             max-width: 600px;
             margin: 0 auto;
@@ -446,22 +460,23 @@
         /* About Section */
         .about-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr;
+            gap: 3rem;
             align-items: center;
         }
         .about-text p {
             margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+            text-align: justify;
         }
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            gap: 1.5rem;
         }
         .stat-card {
             text-align: center;
-            padding: 2rem;
+            padding: 1.5rem;
             background: var(--fundo-escuro-3);
             border-radius: 15px;
             transition: var(--transicao);
@@ -474,7 +489,7 @@
             box-shadow: var(--sombra-suave);
         }
         .stat-number {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             font-weight: 700;
             color: var(--amarelo-primario);
             display: block;
@@ -484,14 +499,14 @@
         }
         .stat-label {
             color: var(--texto-medio);
-            font-size: 0.9rem;
+            font-size: clamp(0.7rem, 1.8vw, 0.9rem);
             margin-top: 0.5rem;
         }
         /* Skills Section */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            gap: 1.5rem;
         }
         .skill-category {
             background: var(--fundo-escuro-2);
@@ -529,7 +544,7 @@
             color: white;
         }
         .skill-title {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.2vw, 1.2rem);
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: var(--amarelo-primario);
@@ -543,13 +558,13 @@
             flex-direction: column;
             gap: 2rem;
             position: relative;
-            padding-left: 3rem;
+            padding-left: 2rem;
         }
         .timeline::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 1.5rem;
+            left: 1rem;
             width: 4px;
             height: 100%;
             background: var(--amarelo-primario);
@@ -568,6 +583,7 @@
             transition: var(--transicao);
             position: relative;
             border: 1px solid transparent;
+            width: 100%;
         }
         .timeline-item:hover {
             transform: translateY(-5px);
@@ -592,7 +608,7 @@
             color: var(--fundo-escuro-1);
             font-size: 1.2rem;
             position: absolute;
-            left: -2.5rem;
+            left: -2rem;
             top: 1.5rem;
         }
         body.light .timeline-dot {
@@ -603,7 +619,7 @@
             flex: 1;
         }
         .timeline-content h3 {
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
             font-weight: 600;
             color: var(--amarelo-primario);
             margin-bottom: 0.5rem;
@@ -612,13 +628,13 @@
             color: var(--azul-primario);
         }
         .timeline-date {
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             color: var(--texto-medio);
             display: block;
             margin-bottom: 0.5rem;
         }
         .timeline-institution {
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2.2vw, 1rem);
             font-weight: 500;
             color: var(--texto-claro);
             margin-bottom: 0.5rem;
@@ -627,7 +643,7 @@
             color: var(--texto-escuro);
         }
         .timeline-content p {
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
             color: var(--texto-medio);
             margin-bottom: 1rem;
         }
@@ -641,7 +657,7 @@
             color: var(--amarelo-primario);
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: clamp(0.7rem, 1.8vw, 0.8rem);
             font-weight: 500;
         }
         body.light .skill-badge {
@@ -651,7 +667,7 @@
         /* Projects Section */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: 1fr;
             gap: 2rem;
         }
         .project-card {
@@ -677,7 +693,7 @@
             padding: 2rem;
         }
         .project-title {
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: var(--amarelo-primario);
@@ -686,8 +702,10 @@
             color: var(--azul-primario);
         }
         .project-description {
+            font-size: clamp(0.9rem, 2.2vw, 1rem);
             color: var(--texto-medio);
             margin-bottom: 1.5rem;
+            text-align: justify;
         }
         .project-tech {
             display: flex;
@@ -700,7 +718,7 @@
             color: var(--amarelo-primario);
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: clamp(0.7rem, 1.8vw, 0.8rem);
             font-weight: 500;
         }
         body.light .tech-tag {
@@ -710,7 +728,7 @@
         /* Certificações Section */
         .certifications-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr;
             gap: 2rem;
         }
         .cert-card {
@@ -773,7 +791,7 @@
             color: white;
         }
         .cert-card h3 {
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
             font-weight: 600;
             margin-bottom: 1rem;
             color: var(--amarelo-primario);
@@ -784,6 +802,7 @@
             color: var(--azul-primario);
         }
         .cert-card p {
+            font-size: clamp(0.9rem, 2.2vw, 1rem);
             color: var(--texto-medio);
             margin-bottom: 1.5rem;
             line-height: 1.6;
@@ -797,6 +816,7 @@
             color: var(--amarelo-primario);
             text-decoration: none;
             font-weight: 500;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             transition: var(--transicao);
             position: relative;
             z-index: 1;
@@ -814,8 +834,8 @@
         /* Contact Section */
         .contact-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr;
+            gap: 3rem;
         }
         .contact-info {
             display: flex;
@@ -824,7 +844,7 @@
         }
         .contact-item {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 1rem;
             padding: 1.5rem;
             background: var(--fundo-escuro-2);
@@ -852,24 +872,60 @@
             justify-content: center;
             color: var(--fundo-escuro-1);
             font-size: 1.2rem;
+            flex-shrink: 0;
         }
         body.light .contact-icon {
             background: var(--azul-primario);
             color: white;
         }
+        .contact-item h4 {
+            font-size: clamp(1rem, 2.2vw, 1.1rem);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--amarelo-primario);
+        }
+        body.light .contact-item h4 {
+            color: var(--azul-primario);
+        }
+        .contact-item p {
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            color: var(--texto-medio);
+            margin-bottom: 0.5rem;
+        }
+        .contact-link {
+            color: var(--amarelo-primario);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            transition: var(--transicao);
+            display: inline-block;
+        }
+        .contact-link:hover {
+            color: var(--amarelo-secundario);
+            text-decoration: underline;
+        }
+        body.light .contact-link {
+            color: var(--azul-primario);
+        }
+        body.light .contact-link:hover {
+            color: var(--azul-secundario);
+        }
         /* Contact CTA Section */
         .contact-cta {
             display: flex;
             align-items: center;
+            justify-content: center;
         }
         .cta-card {
             background: linear-gradient(135deg, var(--fundo-escuro-2) 0%, var(--fundo-escuro-3) 100%);
-            padding: 3rem;
+            padding: 2.5rem 1.5rem;
             border-radius: 20px;
             text-align: center;
             border: 1px solid var(--amarelo-primario);
             position: relative;
             overflow: hidden;
+            width: 100%;
+            max-width: 500px;
         }
         .cta-card::before {
             content: '';
@@ -890,7 +946,7 @@
             background: radial-gradient(circle at center, rgba(21, 101, 192, 0.1) 0%, transparent 70%);
         }
         .cta-card h3 {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             font-weight: 700;
             margin-bottom: 1rem;
             color: var(--amarelo-primario);
@@ -901,7 +957,7 @@
             color: var(--azul-primario);
         }
         .cta-card p {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.2vw, 1.1rem);
             color: var(--texto-medio);
             margin-bottom: 2rem;
             line-height: 1.7;
@@ -911,7 +967,7 @@
         .cta-features {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.5rem;
             margin-bottom: 2.5rem;
             flex-wrap: wrap;
         }
@@ -920,7 +976,7 @@
             align-items: center;
             gap: 0.5rem;
             color: var(--texto-claro);
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             font-weight: 500;
             position: relative;
             z-index: 1;
@@ -937,40 +993,9 @@
         }
         .btn-lg {
             padding: 1.2rem 2.5rem;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 2.2vw, 1.1rem);
             position: relative;
             z-index: 1;
-        }
-        /* Contact Info Improvements */
-        .contact-item h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--amarelo-primario);
-        }
-        body.light .contact-item h4 {
-            color: var(--azul-primario);
-        }
-        .contact-item p {
-            color: var(--texto-medio);
-            margin-bottom: 0.5rem;
-        }
-        .contact-link {
-            color: var(--amarelo-primario);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: var(--transicao);
-        }
-        .contact-link:hover {
-            color: var(--amarelo-secundario);
-            text-decoration: underline;
-        }
-        body.light .contact-link {
-            color: var(--azul-primario);
-        }
-        body.light .contact-link:hover {
-            color: var(--azul-secundario);
         }
         /* Footer */
         .footer {
@@ -991,7 +1016,7 @@
         }
         .footer-text {
             color: var(--texto-medio);
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
         }
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -1002,13 +1027,28 @@
             .profile-image {
                 width: 200px;
                 height: 200px;
-                margin: 0 auto;
-                display: block;
+                margin: 2rem auto 0;
             }
-            .about-content,
+            .about-content {
+                gap: 2rem;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .timeline {
+                padding-left: 1.5rem;
+            }
+            .timeline::before {
+                left: 0.75rem;
+            }
+            .timeline-dot {
+                left: -1rem;
+            }
             .contact-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
             }
             .mobile-menu-toggle {
                 display: block;
@@ -1016,39 +1056,25 @@
             .nav-links {
                 display: none;
             }
-            .header-actions {
-                justify-content: center;
+        }
+        @media (min-width: 769px) {
+            .header-content {
+                grid-template-columns: 1fr 300px;
             }
-            .stats-grid {
-                grid-template-columns: 1fr;
+            .about-content {
+                grid-template-columns: 1fr 1fr;
             }
-            .skills-grid,
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
             .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            .timeline {
-                padding-left: 2rem;
-            }
-            .timeline::before {
-                left: 1rem;
-            }
-            .timeline-dot {
-                left: -1.5rem;
-                top: 1rem;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             }
             .certifications-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             }
-            .cta-card {
-                padding: 2rem;
-            }
-            .cta-card h3 {
-                font-size: 1.5rem;
-            }
-            .cta-features {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
         /* Animations */
@@ -1244,10 +1270,8 @@
                         <h3 class="project-title">Backend do Projeto Final</h3>
                         <p class="project-description">
                             Ainda em desenvolvimento, projeto final do curso de Análise e Desenvolvimento de Sistemas no
-                            SESI/SENAI.
-                            Buscando melhorar a experiência de compra online, o Bella Avventura é um site de viagens que
-                            visa
-                            oferecer uma plataforma intuitiva e eficiente para os usuários.
+                            SESI/SENAI. Buscando melhorar a experiência de compra online, o Bella Avventura é um site de viagens que
+                            visa oferecer uma plataforma intuitiva e eficiente para os usuários.
                         </p>
                         <div class="project-tech">
                             <span class="tech-tag">Laravel</span>
@@ -1292,7 +1316,7 @@
                         <p class="project-description">
                             Desenvolver um sistema web integrado que permitirá a gestão automatizada da clínica,
                             facilitando o acesso e o controle dos cadastros de pacientes. Seu desafio é desenvolver um
-                            sistema CRUD completo para o cadastro de pacientes da clínica
+                            sistema CRUD completo para o cadastro de pacientes da clínica.
                         </p>
                         <div class="project-tech">
                             <span class="tech-tag">PHP</span>
