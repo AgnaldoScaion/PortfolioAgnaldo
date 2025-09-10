@@ -668,6 +668,110 @@
             background: rgba(21, 101, 192, 0.1);
             color: var(--azul-primario);
         }
+        /* Certificações Section */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .cert-card {
+            background: var(--fundo-escuro-2);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: var(--transicao);
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 235, 59, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: var(--transicao);
+        }
+        .cert-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--amarelo-primario);
+            box-shadow: 0 10px 30px rgba(255, 235, 59, 0.1);
+        }
+        .cert-card:hover::before {
+            opacity: 1;
+        }
+        body.light .cert-card {
+            background: white;
+            box-shadow: var(--sombra-suave);
+            border-color: var(--fundo-claro-3);
+        }
+        body.light .cert-card::before {
+            background: linear-gradient(135deg, rgba(21, 101, 192, 0.05) 0%, transparent 100%);
+        }
+        body.light .cert-card:hover {
+            border-color: var(--azul-primario);
+            box-shadow: 0 10px 30px rgba(21, 101, 192, 0.1);
+        }
+        .cert-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--amarelo-primario), var(--amarelo-secundario));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+            color: var(--fundo-escuro-1);
+            position: relative;
+            z-index: 1;
+        }
+        body.light .cert-icon {
+            background: linear-gradient(135deg, var(--azul-primario), var(--azul-secundario));
+            color: white;
+        }
+        .cert-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--amarelo-primario);
+            position: relative;
+            z-index: 1;
+        }
+        body.light .cert-card h3 {
+            color: var(--azul-primario);
+        }
+        .cert-card p {
+            color: var(--texto-medio);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        .cert-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--amarelo-primario);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transicao);
+            position: relative;
+            z-index: 1;
+        }
+        .cert-link:hover {
+            color: var(--amarelo-secundario);
+            transform: translateX(5px);
+        }
+        body.light .cert-link {
+            color: var(--azul-primario);
+        }
+        body.light .cert-link:hover {
+            color: var(--azul-secundario);
+        }
         /* Contact Section */
         .contact-grid {
             display: grid;
@@ -713,6 +817,121 @@
         body.light .contact-icon {
             background: var(--azul-primario);
             color: white;
+        }
+        /* Contact CTA Section */
+        .contact-cta {
+            display: flex;
+            align-items: center;
+        }
+        .cta-card {
+            background: linear-gradient(135deg, var(--fundo-escuro-2) 0%, var(--fundo-escuro-3) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--amarelo-primario);
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 235, 59, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        body.light .cta-card {
+            background: linear-gradient(135deg, white 0%, var(--fundo-claro-2) 100%);
+            border-color: var(--azul-primario);
+            box-shadow: var(--sombra-forte);
+        }
+        body.light .cta-card::before {
+            background: radial-gradient(circle at center, rgba(21, 101, 192, 0.1) 0%, transparent 70%);
+        }
+        .cta-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--amarelo-primario);
+            position: relative;
+            z-index: 1;
+        }
+        body.light .cta-card h3 {
+            color: var(--azul-primario);
+        }
+        .cta-card p {
+            font-size: 1.1rem;
+            color: var(--texto-medio);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--texto-claro);
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+        .feature i {
+            color: var(--amarelo-primario);
+            font-size: 1rem;
+        }
+        body.light .feature {
+            color: var(--texto-escuro);
+        }
+        body.light .feature i {
+            color: var(--azul-primario);
+        }
+        .btn-lg {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        /* Contact Info Improvements */
+        .contact-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--amarelo-primario);
+        }
+        body.light .contact-item h4 {
+            color: var(--azul-primario);
+        }
+        .contact-item p {
+            color: var(--texto-medio);
+            margin-bottom: 0.5rem;
+        }
+        .contact-link {
+            color: var(--amarelo-primario);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transicao);
+        }
+        .contact-link:hover {
+            color: var(--amarelo-secundario);
+            text-decoration: underline;
+        }
+        body.light .contact-link {
+            color: var(--azul-primario);
+        }
+        body.light .contact-link:hover {
+            color: var(--azul-secundario);
         }
         /* Footer */
         .footer {
@@ -777,6 +996,20 @@
             .timeline-dot {
                 left: -1.5rem;
                 top: 1rem;
+            }
+            .certifications-grid {
+                grid-template-columns: 1fr;
+            }
+            .cta-card {
+                padding: 2rem;
+            }
+            .cta-card h3 {
+                font-size: 1.5rem;
+            }
+            .cta-features {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
             }
         }
         /* Animations */
