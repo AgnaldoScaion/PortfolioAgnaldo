@@ -374,6 +374,45 @@
         body.light .mobile-close {
             color: var(--azul-primario);
         }
+        /* Mobile Header */
+        .mobile-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-top: 1rem;
+            border-bottom: 1px solid var(--fundo-escuro-3);
+            color: var(--texto-claro);
+        }
+        body.light .mobile-header {
+            color: var(--texto-escuro);
+            border-bottom-color: var(--fundo-claro-3);
+        }
+        .mobile-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--amarelo-primario);
+        }
+        body.light .mobile-header h3 {
+            color: var(--azul-primario);
+        }
+        .mobile-header p {
+            font-size: 1rem;
+            color: var(--texto-medio);
+        }
+        /* Mobile Menu Animation */
+        .mobile-nav-menu.animate-mobile-menu {
+            animation: slideInRight 0.5s ease-out forwards;
+        }
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
         /* Sections */
         .section {
             padding: 5rem 0;
@@ -1527,11 +1566,13 @@
         const body = document.body;
         const moonIcon = '<i class="fas fa-moon"></i>';
         const sunIcon = '<i class="fas fa-sun"></i>';
+
         // Load saved theme
         if (localStorage.getItem('theme') === 'light') {
             body.classList.add('light');
             themeToggle.innerHTML = sunIcon;
         }
+
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('light');
             if (body.classList.contains('light')) {
@@ -1542,6 +1583,7 @@
                 localStorage.setItem('theme', 'dark');
             }
         });
+
         // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1555,11 +1597,13 @@
                 }
             });
         });
+
         // Scroll Animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1567,10 +1611,12 @@
                 }
             });
         }, observerOptions);
+
         // Observe all elements with animation class
         document.querySelectorAll('.animate-on-scroll').forEach(el => {
             observer.observe(el);
         });
+
         // Navigation background on scroll
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('.navigation');
@@ -1584,41 +1630,67 @@
                     : 'rgba(26, 26, 26, 0.95)';
             }
         });
+
         // Mobile Menu Implementation
         const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
         let mobileNavOverlay, mobileNavMenu, mobileCloseBtn;
+
         function createMobileMenu() {
             // Create overlay
             mobileNavOverlay = document.createElement('div');
             mobileNavOverlay.className = 'mobile-nav-overlay';
+
             // Create mobile menu
             mobileNavMenu = document.createElement('div');
             mobileNavMenu.className = 'mobile-nav-menu';
+
             // Create close button
             mobileCloseBtn = document.createElement('button');
             mobileCloseBtn.className = 'mobile-close';
             mobileCloseBtn.innerHTML = '<i class="fas fa-times"></i>';
+
+            // Create mobile header with name and title
+            const mobileHeader = document.createElement('div');
+            mobileHeader.className = 'mobile-header';
+            mobileHeader.innerHTML = `
+                <h3>Agnaldo Scaion</h3>
+                <p>Desenvolvedor Full-Stack</p>
+            `;
+
             // Clone navigation links
             const navLinks = document.querySelector('.nav-links').cloneNode(true);
-            navLinks.style.display = 'flex'; // Ensure links are visible in mobile menu
+            navLinks.style.display = 'flex';
+
+            // Append elements
             mobileNavMenu.appendChild(mobileCloseBtn);
+            mobileNavMenu.appendChild(mobileHeader);
             mobileNavMenu.appendChild(navLinks);
+
             body.appendChild(mobileNavOverlay);
             body.appendChild(mobileNavMenu);
+
+            // Add animation class for first opening
+            setTimeout(() => {
+                mobileNavMenu.classList.add('animate-mobile-menu');
+            }, 10);
+
             // Add event listeners
             mobileCloseBtn.addEventListener('click', closeMobileMenu);
             mobileNavOverlay.addEventListener('click', closeMobileMenu);
+
             // Close menu when clicking on links
             navLinks.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', closeMobileMenu);
             });
         }
+
         function openMobileMenu() {
             if (!mobileNavOverlay || !mobileNavMenu) createMobileMenu();
             mobileNavOverlay.style.display = 'block';
             mobileNavMenu.classList.add('active');
             body.style.overflow = 'hidden';
         }
+
         function closeMobileMenu() {
             if (mobileNavOverlay && mobileNavMenu) {
                 mobileNavOverlay.style.display = 'none';
@@ -1626,6 +1698,7 @@
                 body.style.overflow = '';
             }
         }
+
         // Mobile menu toggle event
         mobileMenuToggle?.addEventListener('click', () => {
             if (mobileNavMenu && mobileNavMenu.classList.contains('active')) {
@@ -1634,12 +1707,14 @@
                 openMobileMenu();
             }
         });
+
         // Close mobile menu on window resize
         window.addEventListener('resize', () => {
             if (window.innerWidth > 768) {
                 closeMobileMenu();
             }
         });
+
         // Update stats with animation
         function animateStats() {
             const statNumbers = document.querySelectorAll('.stat-number');
@@ -1658,6 +1733,7 @@
                 }, 50);
             });
         }
+
         // Animate stats when visible
         const statsSection = document.querySelector('.stats-grid');
         if (statsSection) {
