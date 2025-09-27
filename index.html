@@ -26,6 +26,10 @@
             --sombra-suave: 0 4px 20px rgba(0, 0, 0, 0.1);
             --sombra-forte: 0 8px 30px rgba(0, 0, 0, 0.2);
             --transicao: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --cafe-marrom: #8B4513;
+            --cafe-claro: #D2691E;
+            --cafe-escuro: #654321;
+            --vapor-branco: rgba(255, 255, 255, 0.8);
         }
         * {
             margin: 0;
@@ -44,24 +48,80 @@
             color: var(--texto-escuro);
             background-color: var(--fundo-claro-2);
         }
+        /* Loading Screen Styles - Simplified */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--fundo-escuro-1) 0%, var(--fundo-escuro-2) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        .loading-screen.fade-out {
+            opacity: 0;
+            transform: scale(1.1);
+        }
+        /* Simple Coffee Logo - Black and White */
+        .coffee-logo {
+            width: 60px;
+            height: 60px;
+            animation: float 3s ease-in-out infinite;
+        }
+        .coffee-logo path, .coffee-logo circle {
+            fill: #333333;
+            stroke: #ffffff;
+            stroke-width: 0.5;
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        /* Site Content (Hidden Initially) */
+        .site-content {
+            display: none;
+        }
+        .site-content.show {
+            display: block;
+            animation: fadeInSite 1s ease-in-out;
+        }
+        @keyframes fadeInSite {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
             width: 100%;
         }
-        /* Header Modernizado */
+        /* Header CORRIGIDO */
         .header {
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--fundo-escuro-1) 0%, var(--fundo-escuro-2) 100%);
+            background: var(--fundo-escuro-1);
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
             padding-top: 80px;
+            transition: var(--transicao);
         }
         body.light .header {
-            background: linear-gradient(135deg, var(--fundo-claro-1) 0%, var(--fundo-claro-2) 100%);
+            background: var(--fundo-claro-1);
         }
         .header::before {
             content: '';
@@ -72,6 +132,7 @@
             bottom: 0;
             background: radial-gradient(circle at 20% 80%, rgba(255, 235, 59, 0.1) 0%, transparent 50%);
             pointer-events: none;
+            transition: var(--transicao);
         }
         body.light .header::before {
             background: radial-gradient(circle at 20% 80%, rgba(21, 101, 192, 0.05) 0%, transparent 50%);
@@ -94,6 +155,7 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.2;
+            transition: var(--transicao);
         }
         body.light .header-text h1 {
             background: linear-gradient(135deg, var(--azul-primario), var(--azul-secundario));
@@ -105,6 +167,7 @@
             font-weight: 400;
             margin-bottom: 1.5rem;
             color: var(--texto-medio);
+            transition: var(--transicao);
         }
         .header-description {
             font-size: clamp(1rem, 2.5vw, 1.1rem);
@@ -113,6 +176,11 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            color: var(--texto-claro);
+            transition: var(--transicao);
+        }
+        body.light .header-description {
+            color: var(--texto-escuro);
         }
         .header-actions {
             display: flex;
@@ -226,6 +294,7 @@
             padding: 5px;
             position: relative;
             justify-self: center;
+            transition: var(--transicao);
         }
         body.light .profile-image {
             background: linear-gradient(135deg, var(--azul-primario), var(--azul-secundario));
@@ -260,9 +329,9 @@
             background: var(--azul-primario);
             color: white;
         }
-        /* Navigation */
+        /* Navigation CORRIGIDA */
         .navigation {
-            background: rgba(26, 26, 26, 0.95);
+            background: var(--fundo-escuro-2);
             backdrop-filter: blur(10px);
             position: fixed;
             top: 0;
@@ -271,20 +340,27 @@
             z-index: 999;
             padding: 1rem 0;
             transition: var(--transicao);
+            border-bottom: 1px solid rgba(255, 235, 59, 0.1);
         }
         body.light .navigation {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--fundo-claro-1);
+            border-bottom: 1px solid rgba(21, 101, 192, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         .nav-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 0 20px;
+            position: relative;
         }
         .logo {
             font-size: clamp(1.2rem, 3vw, 1.5rem);
             font-weight: 700;
             color: var(--amarelo-primario);
+            position: absolute;
+            left: 20px;
+            transition: var(--transicao);
         }
         body.light .logo {
             color: var(--azul-primario);
@@ -292,34 +368,55 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: clamp(1rem, 2vw, 2rem);
+            gap: 2rem;
+            background: rgba(255, 235, 59, 0.05);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 235, 59, 0.1);
+            transition: var(--transicao);
+        }
+        body.light .nav-links {
+            background: rgba(21, 101, 192, 0.05);
+            border-color: rgba(21, 101, 192, 0.1);
         }
         .nav-links a {
             color: var(--texto-claro);
             text-decoration: none;
             font-weight: 500;
-            font-size: clamp(0.8rem, 2vw, 1rem);
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
             transition: var(--transicao);
             position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
         }
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
+            bottom: 0;
+            left: 50%;
             width: 0;
             height: 2px;
             background: var(--amarelo-primario);
             transition: var(--transicao);
+            transform: translateX(-50%);
+        }
+        .nav-links a:hover {
+            color: var(--amarelo-primario);
+            background: rgba(255, 235, 59, 0.1);
         }
         .nav-links a:hover::after {
-            width: 100%;
+            width: 80%;
         }
         body.light .nav-links a {
             color: var(--texto-escuro);
         }
         body.light .nav-links a::after {
             background: var(--azul-primario);
+        }
+        body.light .nav-links a:hover {
+            color: var(--azul-primario);
+            background: rgba(21, 101, 192, 0.1);
         }
         /* Mobile Menu */
         .mobile-menu-toggle {
@@ -329,6 +426,8 @@
             color: var(--amarelo-primario);
             font-size: 1.5rem;
             cursor: pointer;
+            position: absolute;
+            right: 20px;
         }
         body.light .mobile-menu-toggle {
             color: var(--azul-primario);
@@ -366,14 +465,21 @@
             flex-direction: column;
             gap: 1.5rem;
             margin-top: 2rem;
+            background: transparent;
+            padding: 0;
+            border: none;
         }
         .mobile-nav-menu .nav-links a {
             font-size: clamp(1rem, 3vw, 1.2rem);
             color: var(--texto-claro);
             text-align: center;
+            background: rgba(255, 235, 59, 0.05);
+            padding: 1rem;
+            border-radius: 15px;
         }
         body.light .mobile-nav-menu .nav-links a {
             color: var(--texto-escuro);
+            background: rgba(21, 101, 192, 0.05);
         }
         .mobile-close {
             background: none;
@@ -725,6 +831,10 @@
             background: rgba(21, 101, 192, 0.1);
             color: var(--azul-primario);
         }
+        .btn-sm {
+            padding: 0.8rem 1.5rem;
+            font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+        }
         /* Certificações Section */
         .certifications-grid {
             display: grid;
@@ -1029,6 +1139,13 @@
                 height: 200px;
                 margin: 2rem auto 0;
             }
+            .theme-toggle {
+                top: 0.6rem;
+                left: 1.6rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
             .about-content {
                 gap: 2rem;
             }
@@ -1055,6 +1172,12 @@
             }
             .nav-links {
                 display: none;
+            }
+            .logo {
+                position: static;
+            }
+            .nav-container {
+                justify-content: space-between;
             }
         }
         @media (min-width: 769px) {
@@ -1104,673 +1227,781 @@
     </style>
 </head>
 <body>
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" id="themeToggle">
-        <i class="fas fa-moon"></i>
-    </button>
-    <!-- Navigation -->
-    <nav class="navigation">
-        <div class="container">
-            <div class="nav-container">
-                <div class="logo">AS</div>
-                <ul class="nav-links">
-                    <li><a href="#home">Início</a></li>
-                    <li><a href="#about">Sobre</a></li>
-                    <li><a href="#skills">Habilidades</a></li>
-                    <li><a href="#projects">Projetos</a></li>
-                    <li><a href="#contact">Contato</a></li>
-                </ul>
-                <button class="mobile-menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
-    <!-- Header -->
-    <section id="home" class="header">
-        <div class="container">
-            <div class="header-content fade-in-up">
-                <div class="header-text">
-                    <h1>Agnaldo Scaion</h1>
-                    <p class="header-subtitle">Desenvolvedor Full-Stack & Futuro Analista de Sistemas</p>
-                    <p class="header-description">
-                        Transformando ideias em código há mais de um ano. Especializado em desenvolvimento web moderno
-                        e sempre em busca de novos desafios tecnológicos. Atualmente cursando Análise e Desenvolvimento
-                        de Sistemas no SESI/SENAI.
-                    </p>
-                    <div class="header-actions">
-                        <a href="#projects" class="btn btn-primary">
-                            <i class="fas fa-rocket"></i>
-                            Ver Projetos
-                        </a>
-                        <a href="#contact" class="btn btn-outline">
-                            <i class="fas fa-envelope"></i>
-                            Entre em Contato
-                        </a>
-                    </div>
-                    <div class="social-links">
-                        <a href="https://github.com/AgnaldoScaion" target="_blank" class="social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/agnaldo-j%C3%BAnior-81364934b/" target="_blank"
-                            class="social-link">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://wa.me/5511983490572" target="_blank" class="social-link">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="profile-image">
-                    <img src="https://i.ibb.co/B5h7HVMr/Coverimg.jpg" alt="Agnaldo Scaion">
+    <!-- Loading Screen - Simplified -->
+    <div class="loading-screen" id="loadingScreen">
+        <!-- Simple Coffee Logo -->
+        <svg class="coffee-logo" viewBox="0 0 24 24">
+            <path d="M2 21c0 .5.4 1 1 1h13c.6 0 1-.5 1-1v-1H2v1zM20 8h-2V7c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v9c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-1h2c1.1 0 2-.9 2-2v-3c0-1.1-.9-2-2-2zM16 16c0 0-.9-2-4-2s-4 2-4 2V7h8v9zm4-2h-2v-2h2v2z"/>
+            <circle cx="6.5" cy="10.5" r="1"/>
+            <circle cx="9.5" cy="10.5" r="1"/>
+            <circle cx="12.5" cy="10.5" r="1"/>
+        </svg>
+    </div>
+    <!-- Site Content -->
+    <div class="site-content" id="siteContent">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+        </button>
+        <!-- Navigation -->
+        <nav class="navigation">
+            <div class="container">
+                <div class="nav-container">
+                    <div class="logo">AS</div>
+                    <ul class="nav-links">
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#skills">Habilidades</a></li>
+                        <li><a href="#projects">Projetos</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                    <button class="mobile-menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- About -->
-    <section id="about" class="section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2 class="section-title">Sobre Mim</h2>
-                <p class="section-subtitle">
-                    Conhecendo minha jornada na tecnologia e minha paixão pelo desenvolvimento
-                </p>
-            </div>
-            <div class="about-content">
-                <div class="about-text animate-on-scroll">
-                    <p>
-                        Sou um desenvolvedor apaixonado por tecnologia com 17 anos, atualmente estudando no SESI/SENAI.
-                        Minha jornada começou cedo, movida pela curiosidade sobre como as coisas funcionam no mundo
-                        digital.
-                    </p>
-                    <p>
-                        Ao longo dos anos, desenvolvi expertise em múltiplas linguagens de programação e frameworks,
-                        sempre focando em criar soluções eficientes e user-friendly. Acredito que a tecnologia deve
-                        simplificar a vida das pessoas.
-                    </p>
-                    <p>
-                        Quando não estou codando, gosto de explorar novas tecnologias, contribuir para projetos
-                        open-source e compartilhar conhecimento com a comunidade.
-                    </p>
-                </div>
-                <div class="stats-grid animate-on-scroll">
-                    <div class="stat-card">
-                        <span class="stat-number">2+</span>
-                        <span class="stat-label">Projetos Concluídos</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">3+</span>
-                        <span class="stat-label">Projetos em Desenvolvimento</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">2+</span>
-                        <span class="stat-label">Anos de Experiência</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Dedicação</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Skills -->
-    <section id="skills" class="section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2 class="section-title">Habilidades Técnicas</h2>
-                <p class="section-subtitle">
-                    Tecnologias e ferramentas que domino para criar soluções inovadoras
-                </p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category animate-on-scroll">
-                    <div class="skill-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3 class="skill-title">Frontend</h3>
-                    <p>HTML5, CSS3, JavaScript, React, Vue.js</p>
-                </div>
-                <div class="skill-category animate-on-scroll">
-                    <div class="skill-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <h3 class="skill-title">Backend</h3>
-                    <p>Php, MySQL, Laravel, Xampp</p>
-                </div>
-                <div class="skill-category animate-on-scroll">
-                    <div class="skill-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3 class="skill-title">Mobile</h3>
-                    <p>Flutter, Dart, Progressive Web Apps</p>
-                </div>
-                <div class="skill-category animate-on-scroll">
-                    <div class="skill-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3 class="skill-title">Ferramentas</h3>
-                    <p>Git, VS Code, Firebase</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Projects -->
-    <section id="projects" class="section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2 class="section-title">Projetos em Destaque</h2>
-                <p class="section-subtitle">
-                    Alguns dos projetos que desenvolvi e que demonstram minhas habilidades
-                </p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card animate-on-scroll">
-                    <div class="project-header">
-                        <h3 class="project-title">Backend do Projeto Final</h3>
-                        <p class="project-description">
-                            Ainda em desenvolvimento, projeto final do curso de Análise e Desenvolvimento de Sistemas no
-                            SESI/SENAI. Buscando melhorar a experiência de compra online, o Bella Avventura é um site de viagens que
-                            visa oferecer uma plataforma intuitiva e eficiente para os usuários.
+        </nav>
+        <!-- Header -->
+        <section id="home" class="header">
+            <div class="container">
+                <div class="header-content fade-in-up">
+                    <div class="header-text">
+                        <h1>Agnaldo Scaion</h1>
+                        <p class="header-subtitle">Desenvolvedor Full-Stack & Futuro Analista de Sistemas</p>
+                        <p class="header-description">
+                            Transformando ideias em código há mais de um ano. Especializado em desenvolvimento web moderno
+                            e sempre em busca de novos desafios tecnológicos. Atualmente cursando Análise e Desenvolvimento
+                            de Sistemas no SESI/SENAI.
                         </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Laravel</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">Xampp</span>
-                        </div>
-                        <div class="project-actions">
-                            <a href="https://github.com/AgnaldoScaion/bella_back_novo" target="_blank"
-                                class="btn btn-outline btn-sm">
-                                <i class="fab fa-github"></i>
-                                Código
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card animate-on-scroll">
-                    <div class="project-header">
-                        <h3 class="project-title">App Clinica</h3>
-                        <p class="project-description">
-                            A SP Medical Group, fundada em 2020 por Dr. Fernando Strada em Salto, destaca-se na saúde
-                            com especialistas em pediatria e odontologia. Devido ao crescimento, a gestão manual dos
-                            registros tornou-se ineficiente, levando Dr. Strada a contratar você para desenvolver um
-                            sistema web integrado que automatize a gestão de pacientes.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Laravel</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">Xampp</span>
-                        </div>
-                        <div class="project-actions">
-                            <a href="https://github.com/AgnaldoScaion/appclinica" target="_blank"
-                                class="btn btn-outline btn-sm">
-                                <i class="fab fa-github"></i>
-                                Código
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card animate-on-scroll">
-                    <div class="project-header">
-                        <h3 class="project-title">App Sp Medical Group</h3>
-                        <p class="project-description">
-                            Desenvolver um sistema web integrado que permitirá a gestão automatizada da clínica,
-                            facilitando o acesso e o controle dos cadastros de pacientes. Seu desafio é desenvolver um
-                            sistema CRUD completo para o cadastro de pacientes da clínica.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">PHP</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">Xampp</span>
-                        </div>
-                        <div class="project-actions">
-                            <a href="https://github.com/AgnaldoScaion/sp_medical_group" target="_blank"
-                                class="btn btn-outline btn-sm">
-                                <i class="fab fa-github"></i>
-                                Código
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="https://github.com/AgnaldoScaion" target="_blank" class="btn btn-primary">
-                    <i class="fab fa-github"></i>
-                    Ver Todos os Projetos
-                </a>
-            </div>
-        </div>
-    </section>
-    <!-- Experience -->
-    <section id="experience" class="section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2 class="section-title">Experiência & Formação</h2>
-                <p class="section-subtitle">
-                    Minha trajetória educacional e profissional na área de tecnologia
-                </p>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-dot">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Ensino Médio Técnico</h3>
-                        <span class="timeline-date">2024 - 2025</span>
-                        <p class="timeline-institution">SESI/SENAI - São Paulo</p>
-                        <p>Curso integrado focado em Análise e Desenvolvimento de Sistemas, com ênfase em programação,
-                            banco de dados e desenvolvimento web.</p>
-                        <div class="timeline-skills">
-                            <span class="skill-badge">Programação</span>
-                            <span class="skill-badge">Banco de Dados</span>
-                            <span class="skill-badge">Desenvolvimento Web</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-dot">
-                        <i class="fas fa-school"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Ensino Médio</h3>
-                        <span class="timeline-date">2023 - 2025</span>
-                        <p class="timeline-institution">SESI</p>
-                        <p>Formação geral do Ensino Médio, com foco em disciplinas fundamentais e participação em
-                            projetos de tecnologia e inovação.</p>
-                        <div class="timeline-skills">
-                            <span class="skill-badge">Projetos Interdisciplinares</span>
-                            <span class="skill-badge">Tecnologia</span>
-                            <span class="skill-badge">Inovação</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-dot">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Ensino Fundamental</h3>
-                        <span class="timeline-date">2015 - 2023</span>
-                        <p class="timeline-institution">Escola Ceunsp</p>
-                        <p>Base sólida em matemática e ciências, com primeiros contatos com programação e lógica
-                            computacional.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Certifications -->
-    <section id="certifications" class="section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2 class="section-title">Certificações</h2>
-                <p class="section-subtitle">
-                    Cursos e certificações que complementam minha formação técnica
-                </p>
-            </div>
-            <div class="certifications-grid">
-                <div class="cert-card animate-on-scroll">
-                    <div class="cert-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Segurança Cibernética</h3>
-                    <p>Por Dentro da Segurança Cibernética - Fundamentos de proteção digital</p>
-                    <a href="./certificados/1POR DENTRO DA SEGURANÇA CIBERNÉTICA.pdf" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i>
-                        Ver Certificado
-                    </a>
-                </div>
-                <div class="cert-card animate-on-scroll">
-                    <div class="cert-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>Ética em IA</h3>
-                    <p>Ética na Inteligência Artificial - Princípios e práticas responsáveis</p>
-                    <a href="./certificados/2ÉTICA NA INTELIGÊNCIA ARTIFICIAL.pdf" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i>
-                        Ver Certificado
-                    </a>
-                </div>
-                <div class="cert-card animate-on-scroll">
-                    <div class="cert-icon">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <h3>Sustentabilidade</h3>
-                    <p>Desvendando a Descarbonização - Tecnologia para um futuro sustentável</p>
-                    <a href="./certificados/3DESVENDANDO A DESCARBONIZAÇÃO.pdf" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i>
-                        Ver Certificado
-                    </a>
-                </div>
-                <div class="cert-card animate-on-scroll">
-                    <div class="cert-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h3>ESG</h3>
-                    <p>Desvendando o ESG - Environmental, Social and Governance</p>
-                    <a href="./certificados/4DESVENDANDO O ESG.pdf" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i>
-                        Ver Certificado
-                    </a>
-                </div>
-                <div class="cert-card animate-on-scroll">
-                    <div class="cert-icon">
-                        <i class="fas fa-signal"></i>
-                    </div>
-                    <h3>Tecnologia 5G</h3>
-                    <p>Desvendando o 5G - Próxima geração de conectividade</p>
-                    <a href="./certificados/5DESVENDANDO O 5G.pdf" target="_blank" class="cert-link">
-                        <i class="fas fa-external-link-alt"></i>
-                        Ver Certificado
-                    </a>
-                </div>
-                <div class="cert-card animate-on-scroll">
-                    <div class="cert-icon">
-                        <i class="fas fa-user-shield"></i>
-                    </div>
-                    <h3>LGPD</h3>
-                    <p>Privacidade e Proteção de Dados - Lei Geral de Proteção de Dados</p>
-                    <a href="./certificados/6PRIVACIDADE E PROTEÇÃO DE DADOS (LGPD).pdf" target="_blank"
-                        class="cert-link">
-                        <i class="fas fa-external-link-alt"></i>
-                        Ver Certificado
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Contact -->
-    <section id="contact" class="section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2 class="section-title">Vamos Trabalhar Juntos</h2>
-                <p class="section-subtitle">
-                    Tem um projeto em mente? Estou sempre aberto a novas oportunidades e desafios
-                </p>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-info animate-on-scroll">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>agnaldoscaionm@gmail.com</p>
-                            <a href="mailto:agnaldoscaionm@gmail.com?subject=Oportunidade%20de%20Trabalho&body=Olá%20Agnaldo,%20gostaria%20de%20discutir%20um%20projeto..."
-                                class="contact-link">Enviar Email</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <div>
-                            <h4>WhatsApp</h4>
-                            <p>(11) 98349-0572</p>
-                            <a href="https://wa.me/5511983490572?text=Olá%20Agnaldo,%20vi%20seu%20portfólio%20e%20gostaria%20de%20conversar%20sobre..."
-                                target="_blank" class="contact-link">Chamar no WhatsApp</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-linkedin"></i>
-                        </div>
-                        <div>
-                            <h4>LinkedIn</h4>
-                            <p>Conecte-se comigo</p>
-                            <a href="https://www.linkedin.com/in/agnaldo-j%C3%BAnior-81364934b/" target="_blank"
-                                class="contact-link">Ver Perfil</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h4>Localização</h4>
-                            <p>Salto SP, Brasil</p>
-                            <span class="contact-link">Disponível para trabalho remoto</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-cta animate-on-scroll">
-                    <div class="cta-card">
-                        <h3>Pronto para começar?</h3>
-                        <p>Estou sempre em busca de novos desafios e oportunidades para aplicar minhas habilidades em
-                            projetos inovadores.</p>
-                        <div class="cta-features">
-                            <div class="feature">
-                                <i class="fas fa-clock"></i>
-                                <span>Resposta rápida</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-handshake"></i>
-                                <span>Colaboração efetiva</span>
-                            </div>
-                            <div class="feature">
+                        <div class="header-actions">
+                            <a href="#projects" class="btn btn-primary">
                                 <i class="fas fa-rocket"></i>
-                                <span>Entrega de qualidade</span>
+                                Ver Projetos
+                            </a>
+                            <a href="#contact" class="btn btn-outline">
+                                <i class="fas fa-envelope"></i>
+                                Entre em Contato
+                            </a>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://github.com/AgnaldoScaion" target="_blank" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/agnaldo-j%C3%BAnior-81364934b/" target="_blank"
+                                class="social-link">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://wa.me/5511983490572" target="_blank" class="social-link">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="profile-image">
+                        <img src="https://i.ibb.co/B5h7HVMr/Coverimg.jpg" alt="Agnaldo Scaion">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About -->
+        <section id="about" class="section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2 class="section-title">Sobre Mim</h2>
+                    <p class="section-subtitle">
+                        Conhecendo minha jornada na tecnologia e minha paixão pelo desenvolvimento
+                    </p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text animate-on-scroll">
+                        <p>
+                            Sou um desenvolvedor apaixonado por tecnologia com 17 anos, atualmente estudando no SESI/SENAI.
+                            Minha jornada começou cedo, movida pela curiosidade sobre como as coisas funcionam no mundo
+                            digital.
+                        </p>
+                        <p>
+                            Ao longo dos anos, desenvolvi expertise em múltiplas linguagens de programação e frameworks,
+                            sempre focando em criar soluções eficientes e user-friendly. Acredito que a tecnologia deve
+                            simplificar a vida das pessoas.
+                        </p>
+                        <p>
+                            Quando não estou codando, gosto de explorar novas tecnologias, contribuir para projetos
+                            open-source e compartilhar conhecimento com a comunidade.
+                        </p>
+                    </div>
+                    <div class="stats-grid animate-on-scroll">
+                        <div class="stat-card">
+                            <span class="stat-number">2+</span>
+                            <span class="stat-label">Projetos Concluídos</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">3+</span>
+                            <span class="stat-label">Projetos em Desenvolvimento</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">2+</span>
+                            <span class="stat-label">Anos de Experiência</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Dedicação</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Skills -->
+        <section id="skills" class="section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2 class="section-title">Habilidades Técnicas</h2>
+                    <p class="section-subtitle">
+                        Tecnologias e ferramentas que domino para criar soluções inovadoras
+                    </p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category animate-on-scroll">
+                        <div class="skill-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="skill-title">Frontend</h3>
+                        <p>HTML5, CSS3, JavaScript, React, Vue.js</p>
+                    </div>
+                    <div class="skill-category animate-on-scroll">
+                        <div class="skill-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="skill-title">Backend</h3>
+                        <p>Php, MySQL, Laravel, Xampp</p>
+                    </div>
+                    <div class="skill-category animate-on-scroll">
+                        <div class="skill-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="skill-title">Mobile</h3>
+                        <p>Flutter, Dart, Progressive Web Apps</p>
+                    </div>
+                    <div class="skill-category animate-on-scroll">
+                        <div class="skill-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="skill-title">Ferramentas</h3>
+                        <p>Git, VS Code, Firebase</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Projects -->
+        <section id="projects" class="section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2 class="section-title">Projetos em Destaque</h2>
+                    <p class="section-subtitle">
+                        Alguns dos projetos que desenvolvi e que demonstram minhas habilidades
+                    </p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card animate-on-scroll">
+                        <div class="project-header">
+                            <h3 class="project-title">Backend do Projeto Final</h3>
+                            <p class="project-description">
+                                Ainda em desenvolvimento, projeto final do curso de Análise e Desenvolvimento de Sistemas no
+                                SESI/SENAI. Buscando melhorar a experiência de compra online, o Bella Avventura é um site de viagens que
+                                visa oferecer uma plataforma intuitiva e eficiente para os usuários.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Laravel</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">Xampp</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/AgnaldoScaion/bella_back_novo" target="_blank"
+                                    class="btn btn-outline btn-sm">
+                                    <i class="fab fa-github"></i>
+                                    Código
+                                </a>
                             </div>
                         </div>
-                        <a href="https://wa.me/5511983490572?text=Olá%20Agnaldo,%20tenho%20interesse%20em%20discutir%20um%20projeto..."
-                            target="_blank" class="btn btn-primary btn-lg">
-                            <i class="fas fa-paper-plane"></i>
-                            Iniciar Conversa
+                    </div>
+                    <div class="project-card animate-on-scroll">
+                        <div class="project-header">
+                            <h3 class="project-title">App Clinica</h3>
+                            <p class="project-description">
+                                A SP Medical Group, fundada em 2020 por Dr. Fernando Strada em Salto, destaca-se na saúde
+                                com especialistas em pediatria e odontologia. Devido ao crescimento, a gestão manual dos
+                                registros tornou-se ineficiente, levando Dr. Strada a contratar você para desenvolver um
+                                sistema web integrado que automatize a gestão de pacientes.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Laravel</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">Xampp</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/AgnaldoScaion/appclinica" target="_blank"
+                                    class="btn btn-outline btn-sm">
+                                    <i class="fab fa-github"></i>
+                                    Código
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card animate-on-scroll">
+                        <div class="project-header">
+                            <h3 class="project-title">App Sp Medical Group</h3>
+                            <p class="project-description">
+                                Desenvolver um sistema web integrado que permitirá a gestão automatizada da clínica,
+                                facilitando o acesso e o controle dos cadastros de pacientes. Seu desafio é desenvolver um
+                                sistema CRUD completo para o cadastro de pacientes da clínica.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">PHP</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">Xampp</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/AgnaldoScaion/sp_medical_group" target="_blank"
+                                    class="btn btn-outline btn-sm">
+                                    <i class="fab fa-github"></i>
+                                    Código
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="https://github.com/AgnaldoScaion" target="_blank" class="btn btn-primary">
+                        <i class="fab fa-github"></i>
+                        Ver Todos os Projetos
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Experience -->
+        <section id="experience" class="section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2 class="section-title">Experiência & Formação</h2>
+                    <p class="section-subtitle">
+                        Minha trajetória educacional e profissional na área de tecnologia
+                    </p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-dot">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Ensino Médio Técnico</h3>
+                            <span class="timeline-date">2024 - 2025</span>
+                            <p class="timeline-institution">SESI/SENAI - São Paulo</p>
+                            <p>Curso integrado focado em Análise e Desenvolvimento de Sistemas, com ênfase em programação,
+                                banco de dados e desenvolvimento web.</p>
+                            <div class="timeline-skills">
+                                <span class="skill-badge">Programação</span>
+                                <span class="skill-badge">Banco de Dados</span>
+                                <span class="skill-badge">Desenvolvimento Web</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-dot">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Ensino Médio</h3>
+                            <span class="timeline-date">2023 - 2025</span>
+                            <p class="timeline-institution">SESI</p>
+                            <p>Formação geral do Ensino Médio, com foco em disciplinas fundamentais e participação em
+                                projetos de tecnologia e inovação.</p>
+                            <div class="timeline-skills">
+                                <span class="skill-badge">Projetos Interdisciplinares</span>
+                                <span class="skill-badge">Tecnologia</span>
+                                <span class="skill-badge">Inovação</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-dot">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Ensino Fundamental</h3>
+                            <span class="timeline-date">2015 - 2023</span>
+                            <p class="timeline-institution">Escola Ceunsp</p>
+                            <p>Base sólida em matemática e ciências, com primeiros contatos com programação e lógica
+                                computacional.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Certifications -->
+        <section id="certifications" class="section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2 class="section-title">Certificações</h2>
+                    <p class="section-subtitle">
+                        Cursos e certificações que complementam minha formação técnica
+                    </p>
+                </div>
+                <div class="certifications-grid">
+                    <div class="cert-card animate-on-scroll">
+                        <div class="cert-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Segurança Cibernética</h3>
+                        <p>Por Dentro da Segurança Cibernética - Fundamentos de proteção digital</p>
+                        <a href="./certificados/1POR DENTRO DA SEGURANÇA CIBERNÉTICA.pdf" target="_blank" class="cert-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            Ver Certificado
+                        </a>
+                    </div>
+                    <div class="cert-card animate-on-scroll">
+                        <div class="cert-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>Ética em IA</h3>
+                        <p>Ética na Inteligência Artificial - Princípios e práticas responsáveis</p>
+                        <a href="./certificados/2ÉTICA NA INTELIGÊNCIA ARTIFICIAL.pdf" target="_blank" class="cert-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            Ver Certificado
+                        </a>
+                    </div>
+                    <div class="cert-card animate-on-scroll">
+                        <div class="cert-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Sustentabilidade</h3>
+                        <p>Desvendando a Descarbonização - Tecnologia para um futuro sustentável</p>
+                        <a href="./certificados/3DESVENDANDO A DESCARBONIZAÇÃO.pdf" target="_blank" class="cert-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            Ver Certificado
+                        </a>
+                    </div>
+                    <div class="cert-card animate-on-scroll">
+                        <div class="cert-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3>ESG</h3>
+                        <p>Desvendando o ESG - Environmental, Social and Governance</p>
+                        <a href="./certificados/4DESVENDANDO O ESG.pdf" target="_blank" class="cert-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            Ver Certificado
+                        </a>
+                    </div>
+                    <div class="cert-card animate-on-scroll">
+                        <div class="cert-icon">
+                            <i class="fas fa-signal"></i>
+                        </div>
+                        <h3>Tecnologia 5G</h3>
+                        <p>Desvendando o 5G - Próxima geração de conectividade</p>
+                        <a href="./certificados/5DESVENDANDO O 5G.pdf" target="_blank" class="cert-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            Ver Certificado
+                        </a>
+                    </div>
+                    <div class="cert-card animate-on-scroll">
+                        <div class="cert-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h3>LGPD</h3>
+                        <p>Privacidade e Proteção de Dados - Lei Geral de Proteção de Dados</p>
+                        <a href="./certificados/6PRIVACIDADE E PROTEÇÃO DE DADOS (LGPD).pdf" target="_blank"
+                            class="cert-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            Ver Certificado
                         </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-social">
-                <a href="https://github.com/AgnaldoScaion" target="_blank" class="social-link">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/agnaldo-j%C3%BAnior-81364934b/" target="_blank"
-                    class="social-link">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://wa.me/5511983490572" target="_blank" class="social-link">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
+        </section>
+        <!-- Contact -->
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2 class="section-title">Vamos Trabalhar Juntos</h2>
+                    <p class="section-subtitle">
+                        Tem um projeto em mente? Estou sempre aberto a novas oportunidades e desafios
+                    </p>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-info animate-on-scroll">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>agnaldoscaionm@gmail.com</p>
+                                <a href="mailto:agnaldoscaionm@gmail.com?subject=Oportunidade%20de%20Trabalho&body=Olá%20Agnaldo,%20gostaria%20de%20discutir%20um%20projeto..."
+                                    class="contact-link">Enviar Email</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4>WhatsApp</h4>
+                                <p>(11) 98349-0572</p>
+                                <a href="https://wa.me/5511983490572?text=Olá%20Agnaldo,%20vi%20seu%20portfólio%20e%20gostaria%20de%20conversar%20sobre..."
+                                    target="_blank" class="contact-link">Chamar no WhatsApp</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <div>
+                                <h4>LinkedIn</h4>
+                                <p>Conecte-se comigo</p>
+                                <a href="https://www.linkedin.com/in/agnaldo-j%C3%BAnior-81364934b/" target="_blank"
+                                    class="contact-link">Ver Perfil</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Localização</h4>
+                                <p>Salto SP, Brasil</p>
+                                <span class="contact-link">Disponível para trabalho remoto</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-cta animate-on-scroll">
+                        <div class="cta-card">
+                            <h3>Pronto para começar?</h3>
+                            <p>Estou sempre em busca de novos desafios e oportunidades para aplicar minhas habilidades em
+                                projetos inovadores.</p>
+                            <div class="cta-features">
+                                <div class="feature">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Resposta rápida</span>
+                                </div>
+                                <div class="feature">
+                                    <i class="fas fa-handshake"></i>
+                                    <span>Colaboração efetiva</span>
+                                </div>
+                                <div class="feature">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>Entrega de qualidade</span>
+                                </div>
+                            </div>
+                            <a href="https://wa.me/5511983490572?text=Olá%20Agnaldo,%20tenho%20interesse%20em%20discutir%20um%20projeto..."
+                                target="_blank" class="btn btn-primary btn-lg">
+                                <i class="fas fa-paper-plane"></i>
+                                Iniciar Conversa
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p class="footer-text">
-                © 2025 Agnaldo Scaion. Todos os direitos reservados.
-            </p>
-        </div>
-    </footer>
+        </section>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-social">
+                    <a href="https://github.com/AgnaldoScaion" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/agnaldo-j%C3%BAnior-81364934b/" target="_blank"
+                        class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://wa.me/5511983490572" target="_blank" class="social-link">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+                <p class="footer-text">
+                    © 2025 Agnaldo Scaion. Todos os direitos reservados.
+                </p>
+            </div>
+        </footer>
+    </div>
     <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        const moonIcon = '<i class="fas fa-moon"></i>';
-        const sunIcon = '<i class="fas fa-sun"></i>';
-
-        // Load saved theme
-        if (localStorage.getItem('theme') === 'light') {
-            body.classList.add('light');
-            themeToggle.innerHTML = sunIcon;
-        }
-
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('light');
-            if (body.classList.contains('light')) {
-                themeToggle.innerHTML = sunIcon;
-                localStorage.setItem('theme', 'light');
-            } else {
-                themeToggle.innerHTML = moonIcon;
-                localStorage.setItem('theme', 'dark');
+        class LoadingManager {
+            constructor() {
+                this.totalImages = 0;
+                this.loadedImages = 0;
+                this.isComplete = false;
+                this.minLoadingTime = 3000; // 3 segundos mínimo
+                this.startTime = Date.now();
+                this.loadingScreen = document.getElementById('loadingScreen');
+                this.siteContent = document.getElementById('siteContent');
+                this.init();
             }
-        });
-
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Scroll Animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all elements with animation class
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Navigation background on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.navigation');
-            if (window.scrollY > 100) {
-                nav.style.background = body.classList.contains('light')
-                    ? 'rgba(255, 255, 255, 0.98)'
-                    : 'rgba(26, 26, 26, 0.98)';
-            } else {
-                nav.style.background = body.classList.contains('light')
-                    ? 'rgba(255, 255, 255, 0.95)'
-                    : 'rgba(26, 26, 26, 0.95)';
+            init() {
+                this.preloadImages();
             }
-        });
-
-        // Mobile Menu Implementation
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        let mobileNavOverlay, mobileNavMenu, mobileCloseBtn;
-
-        function createMobileMenu() {
-            // Create overlay
-            mobileNavOverlay = document.createElement('div');
-            mobileNavOverlay.className = 'mobile-nav-overlay';
-
-            // Create mobile menu
-            mobileNavMenu = document.createElement('div');
-            mobileNavMenu.className = 'mobile-nav-menu';
-
-            // Create close button
-            mobileCloseBtn = document.createElement('button');
-            mobileCloseBtn.className = 'mobile-close';
-            mobileCloseBtn.innerHTML = '<i class="fas fa-times"></i>';
-
-            // Create mobile header with name and title
-            const mobileHeader = document.createElement('div');
-            mobileHeader.className = 'mobile-header';
-            mobileHeader.innerHTML = `
-                <h3>Agnaldo Scaion</h3>
-                <p>Desenvolvedor Full-Stack</p>
-            `;
-
-            // Clone navigation links
-            const navLinks = document.querySelector('.nav-links').cloneNode(true);
-            navLinks.style.display = 'flex';
-
-            // Append elements
-            mobileNavMenu.appendChild(mobileCloseBtn);
-            mobileNavMenu.appendChild(mobileHeader);
-            mobileNavMenu.appendChild(navLinks);
-
-            body.appendChild(mobileNavOverlay);
-            body.appendChild(mobileNavMenu);
-
-            // Add animation class for first opening
-            setTimeout(() => {
-                mobileNavMenu.classList.add('animate-mobile-menu');
-            }, 10);
-
-            // Add event listeners
-            mobileCloseBtn.addEventListener('click', closeMobileMenu);
-            mobileNavOverlay.addEventListener('click', closeMobileMenu);
-
-            // Close menu when clicking on links
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', closeMobileMenu);
-            });
-        }
-
-        function openMobileMenu() {
-            if (!mobileNavOverlay || !mobileNavMenu) createMobileMenu();
-            mobileNavOverlay.style.display = 'block';
-            mobileNavMenu.classList.add('active');
-            body.style.overflow = 'hidden';
-        }
-
-        function closeMobileMenu() {
-            if (mobileNavOverlay && mobileNavMenu) {
-                mobileNavOverlay.style.display = 'none';
-                mobileNavMenu.classList.remove('active');
-                body.style.overflow = '';
-            }
-        }
-
-        // Mobile menu toggle event
-        mobileMenuToggle?.addEventListener('click', () => {
-            if (mobileNavMenu && mobileNavMenu.classList.contains('active')) {
-                closeMobileMenu();
-            } else {
-                openMobileMenu();
-            }
-        });
-
-        // Close mobile menu on window resize
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                closeMobileMenu();
-            }
-        });
-
-        // Update stats with animation
-        function animateStats() {
-            const statNumbers = document.querySelectorAll('.stat-number');
-            statNumbers.forEach(stat => {
-                const target = parseInt(stat.textContent);
-                const increment = target / 50;
-                let current = 0;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    stat.textContent = Math.floor(current) + (stat.textContent.includes('+') ? '+' : '') +
-                        (stat.textContent.includes('%') ? '%' : '');
-                }, 50);
-            });
-        }
-
-        // Animate stats when visible
-        const statsSection = document.querySelector('.stats-grid');
-        if (statsSection) {
-            const statsObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateStats();
-                        statsObserver.unobserve(entry.target);
+            preloadImages() {
+                // Lista de imagens para pré-carregar
+                const imageUrls = [
+                    'https://i.ibb.co/B5h7HVMr/Coverimg.jpg',
+                    'https://i.ibb.co/hFpQhMtP/favicon.png'
+                ];
+                // Buscar todas as imagens no HTML do site
+                const siteImages = this.siteContent.querySelectorAll('img');
+                siteImages.forEach(img => {
+                    if (img.src && !imageUrls.includes(img.src)) {
+                        imageUrls.push(img.src);
                     }
                 });
-            });
-            statsObserver.observe(statsSection);
+                // Buscar imagens em background-image do CSS
+                const elementsWithBgImages = this.siteContent.querySelectorAll('*');
+                elementsWithBgImages.forEach(el => {
+                    const style = window.getComputedStyle(el);
+                    const bgImage = style.backgroundImage;
+                    if (bgImage && bgImage !== 'none') {
+                        const url = bgImage.slice(4, -1).replace(/["']/g, "");
+                        if (url.startsWith('http') && !imageUrls.includes(url)) {
+                            imageUrls.push(url);
+                        }
+                    }
+                });
+                this.totalImages = imageUrls.length;
+                if (this.totalImages === 0) {
+                    this.checkComplete();
+                    return;
+                }
+                // Carregar cada imagem
+                imageUrls.forEach((url) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        this.loadedImages++;
+                        this.checkComplete();
+                    };
+                    img.onerror = () => {
+                        this.loadedImages++;
+                        this.checkComplete();
+                    };
+                    img.src = url;
+                });
+            }
+            checkComplete() {
+                if (this.loadedImages >= this.totalImages && !this.isComplete) {
+                    this.isComplete = true;
+                    const elapsedTime = Date.now() - this.startTime;
+                    const remainingTime = Math.max(0, this.minLoadingTime - elapsedTime);
+                    setTimeout(() => {
+                        this.finishLoading();
+                    }, remainingTime);
+                }
+            }
+            finishLoading() {
+                // Fade out loading screen
+                this.loadingScreen.classList.add('fade-out');
+                // Show site content after animation
+                setTimeout(() => {
+                    this.loadingScreen.style.display = 'none';
+                    this.siteContent.classList.add('show');
+                    document.body.style.overflow = 'auto';
+                    this.initSite();
+                }, 1000);
+            }
+            initSite() {
+                // Initialize site functionality after loading
+                this.initThemeToggle();
+                this.initSmoothScrolling();
+                this.initScrollAnimations();
+                this.initMobileMenu();
+                this.initStatsAnimation();
+            }
+            initThemeToggle() {
+                const themeToggle = document.getElementById('themeToggle');
+                const body = document.body;
+                const moonIcon = '<i class="fas fa-moon"></i>';
+                const sunIcon = '<i class="fas fa-sun"></i>';
+
+                // Função para atualizar o estilo da navegação
+                const updateNavStyle = () => {
+                    const nav = document.querySelector('.navigation');
+                    if (window.scrollY > 100) {
+                        nav.style.background = body.classList.contains('light')
+                            ? 'rgba(255, 255, 255, 0.98)'
+                            : 'rgba(26, 26, 26, 0.98)';
+                    } else {
+                        nav.style.background = body.classList.contains('light')
+                            ? 'rgba(255, 255, 255, 0.95)'
+                            : 'rgba(26, 26, 26, 0.95)';
+                    }
+                };
+
+                // Load saved theme
+                if (localStorage.getItem('theme') === 'light') {
+                    body.classList.add('light');
+                    themeToggle.innerHTML = sunIcon;
+                    updateNavStyle(); // Atualiza o estilo da navegação ao carregar a página
+                }
+
+                themeToggle.addEventListener('click', () => {
+                    body.classList.toggle('light');
+                    if (body.classList.contains('light')) {
+                        themeToggle.innerHTML = sunIcon;
+                        localStorage.setItem('theme', 'light');
+                    } else {
+                        themeToggle.innerHTML = moonIcon;
+                        localStorage.setItem('theme', 'dark');
+                    }
+                    updateNavStyle(); // Atualiza o estilo da navegação ao mudar o tema
+                });
+
+                // Atualiza o estilo da navegação ao rolar a página
+                window.addEventListener('scroll', updateNavStyle);
+            }
+            initSmoothScrolling() {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+            }
+            initScrollAnimations() {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate');
+                        }
+                    });
+                }, observerOptions);
+                // Observe all elements with animation class
+                document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                    observer.observe(el);
+                });
+            }
+            initMobileMenu() {
+                const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+                let mobileNavOverlay, mobileNavMenu, mobileCloseBtn;
+                const createMobileMenu = () => {
+                    // Create overlay
+                    mobileNavOverlay = document.createElement('div');
+                    mobileNavOverlay.className = 'mobile-nav-overlay';
+                    // Create mobile menu
+                    mobileNavMenu = document.createElement('div');
+                    mobileNavMenu.className = 'mobile-nav-menu';
+                    // Create close button
+                    mobileCloseBtn = document.createElement('button');
+                    mobileCloseBtn.className = 'mobile-close';
+                    mobileCloseBtn.innerHTML = '<i class="fas fa-times"></i>';
+                    // Create mobile header with name and title
+                    const mobileHeader = document.createElement('div');
+                    mobileHeader.className = 'mobile-header';
+                    mobileHeader.innerHTML = `
+                        <h3>Agnaldo Scaion</h3>
+                        <p>Desenvolvedor Full-Stack</p>
+                    `;
+                    // Clone navigation links
+                    const navLinks = document.querySelector('.nav-links').cloneNode(true);
+                    navLinks.style.display = 'flex';
+                    // Append elements
+                    mobileNavMenu.appendChild(mobileCloseBtn);
+                    mobileNavMenu.appendChild(mobileHeader);
+                    mobileNavMenu.appendChild(navLinks);
+                    document.body.appendChild(mobileNavOverlay);
+                    document.body.appendChild(mobileNavMenu);
+                    // Add animation class for first opening
+                    setTimeout(() => {
+                        mobileNavMenu.classList.add('animate-mobile-menu');
+                    }, 10);
+                    // Add event listeners
+                    mobileCloseBtn.addEventListener('click', closeMobileMenu);
+                    mobileNavOverlay.addEventListener('click', closeMobileMenu);
+                    // Close menu when clicking on links
+                    navLinks.querySelectorAll('a').forEach(link => {
+                        link.addEventListener('click', closeMobileMenu);
+                    });
+                };
+                const openMobileMenu = () => {
+                    if (!mobileNavOverlay || !mobileNavMenu) createMobileMenu();
+                    mobileNavOverlay.style.display = 'block';
+                    mobileNavMenu.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                };
+                const closeMobileMenu = () => {
+                    if (mobileNavOverlay && mobileNavMenu) {
+                        mobileNavOverlay.style.display = 'none';
+                        mobileNavMenu.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                };
+                // Mobile menu toggle event
+                mobileMenuToggle?.addEventListener('click', () => {
+                    if (mobileNavMenu && mobileNavMenu.classList.contains('active')) {
+                        closeMobileMenu();
+                    } else {
+                        openMobileMenu();
+                    }
+                });
+                // Close mobile menu on window resize
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 768) {
+                        closeMobileMenu();
+                    }
+                });
+            }
+            initStatsAnimation() {
+                const animateStats = () => {
+                    const statNumbers = document.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const target = parseInt(stat.textContent);
+                        if (isNaN(target)) return;
+                        const increment = target / 50;
+                        let current = 0;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                current = target;
+                                clearInterval(timer);
+                            }
+                            const suffix = stat.textContent.includes('+') ? '+' :
+                                          stat.textContent.includes('%') ? '%' : '';
+                            stat.textContent = Math.floor(current) + suffix;
+                        }, 50);
+                    });
+                };
+                // Animate stats when visible
+                const statsSection = document.querySelector('.stats-grid');
+                if (statsSection) {
+                    const statsObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                animateStats();
+                                statsObserver.unobserve(entry.target);
+                            }
+                        });
+                    });
+                    statsObserver.observe(statsSection);
+                }
+            }
         }
+        // Initialize loading manager when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            new LoadingManager();
+        });
+        // Fallback: força o carregamento após 10 segundos
+        setTimeout(() => {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const siteContent = document.getElementById('siteContent');
+            if (loadingScreen && loadingScreen.style.display !== 'none') {
+                loadingScreen.style.display = 'none';
+                if (siteContent) {
+                    siteContent.classList.add('show');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        }, 10000);
     </script>
 </body>
 </html>
