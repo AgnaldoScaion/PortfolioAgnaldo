@@ -769,7 +769,7 @@
                     <a href="https://www.linkedin.com/in/agnaldo-j%C3%BAnior-81364934b/" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
                     <a href="https://wa.me/5511983490572" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
                 </div>
-                <p class="footer-text">© 2025 Agnaldo Scaion. Todos os direitos reservados.</p>
+                <p class="footer-text">&copy; <span id="year"></span> Agnaldo Scaion. Todos os direitos reservados.</p>
             </div>
         </footer>
     </div>
@@ -1002,6 +1002,7 @@
                 }
             }
         }, 10000);
+        document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
